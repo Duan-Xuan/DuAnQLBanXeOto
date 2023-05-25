@@ -11,6 +11,7 @@ export default function App() {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Home" component={Home} />
+        {/* Duan cc */}
       </Stack.Navigator>
     </NavigationContainer>
   );
