@@ -11,7 +11,7 @@ export default function App() {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Home" component={Home} />
-        {/* quang */}
+        {/* quang12 */}
       </Stack.Navigator>
     </NavigationContainer>
   );
