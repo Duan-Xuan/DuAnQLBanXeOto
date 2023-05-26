@@ -1,8 +1,14 @@
 import React from 'react';
 import { View, Image, TextInput, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/FontAwesome'
 
-const Home = () => {
+const Home = (props) => {
+    const { navigation } = props
+
+    const CaiDat = () => {
+        navigation.navigate('CaiDat')
+    }
+
     return (
         <View style={styles.container}>
             <Image source={require('../assets/backgroud.png')} style={styles.backgroundImage} />
@@ -45,7 +51,7 @@ const Home = () => {
                             <Icon name="money" size={45} color="green" />
                             <Text>Doanh thu</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.icon}>
+                        <TouchableOpacity onPress={CaiDat} style={styles.icon}>
                             <Icon name="gear" size={45} color="green" />
                             <Text>Cài đặt</Text>
                         </TouchableOpacity>
