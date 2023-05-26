@@ -12,7 +12,7 @@ const Home = () => {
                     <TextInput style={styles.searchBar} placeholder="Tìm kiếm..." />
                 </View>
                 <View style={styles.iconContainer}>
-                    <Text style={styles.homeText}>What do you need?</Text>
+                    <Text style={styles.homeText}>Bạn cần gì?</Text>
                     <View style={styles.iconRow}>
                         <TouchableOpacity style={styles.icon}>
                             <Icon name="calendar" size={45} color="green" />
