@@ -5,7 +5,6 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 const Home = () => {
     return (
         <View style={styles.container}>
-            {/* <View style={styles.backgroundImage}></View> */}
             <Image source={require('../assets/backgroud.png')} style={styles.backgroundImage} />
             <View style={styles.overlay}>
                 <View style={styles.topView}>
