@@ -58,6 +58,7 @@ export default class Login extends Component {
                 <TouchableOpacity onPress={login} style={styles.button}>
                     <Text style={styles.text3}>Login</Text>
                 </TouchableOpacity>
+                <Text style={styles.text4}>Được tạo bởi team nhóm 7 !</Text>
             </ImageBackground>
         )
     }
@@ -89,6 +90,10 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'white'
     },
+    text4: {
+        marginTop: '15%',
+        fontWeight: 'bold',
+    },
     textinput: {
         height: 40,
         width: '80%',
@@ -116,6 +121,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 20,
-        backgroundColor: '#00BB00'
+        backgroundColor: 'green'
     }
 })
