@@ -8,7 +8,6 @@ const Home = () => {
             <Image source={require('../assets/backgroud.png')} style={styles.backgroundImage} />
             <View style={styles.overlay}>
                 <View style={styles.topView}>
-
                     <Image source={require('../assets/image.jpg')} style={styles.image} />
                     <TextInput style={styles.searchBar} placeholder="Tìm kiếm..." />
                 </View>
@@ -16,39 +15,39 @@ const Home = () => {
                     <Text style={styles.homeText}>What do you need?</Text>
                     <View style={styles.iconRow}>
                         <TouchableOpacity style={styles.icon}>
-                            <Icon name="comments" size={45} color="green" />
-                            <Text>Setting</Text>
+                            <Icon name="calendar" size={45} color="green" />
+                            <Text>Đơn hàng</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.icon}>
-                            <Icon name="comments" size={45} color="green" />
-                            <Text>Setting</Text>
+                            <Icon name="user-circle-o" size={45} color="green" />
+                            <Text>Khách hàng</Text>
 
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.icon}>
-                            <Icon name="comments" size={45} color="green" />
-                            <Text>Setting</Text>
+                            <Icon name="dropbox" size={45} color="green" />
+                            <Text>Sản phẩm</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.icon}>
-                            <Icon name="comments" size={45} color="green" />
-                            <Text>Setting</Text>
+                            <Icon name="users" size={45} color="green" />
+                            <Text>Nhân viên</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.iconRow}>
                         <TouchableOpacity style={styles.icon}>
-                            <Icon name="comments" size={45} color="green" />
-                            <Text>Setting</Text>
+                            <Icon name="truck" size={45} color="green" />
+                            <Text>Hãng</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.icon}>
-                            <Icon name="comments" size={45} color="green" />
-                            <Text>Setting</Text>
+                            <Icon name="bar-chart" size={45} color="green" />
+                            <Text>Bán chạy</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.icon}>
-                            <Icon name="comments" size={45} color="green" />
-                            <Text>Setting</Text>
+                            <Icon name="money" size={45} color="green" />
+                            <Text>Doanh thu</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.icon}>
-                            <Icon name="comments" size={45} color="green" />
-                            <Text>Setting</Text>
+                            <Icon name="gear" size={45} color="green" />
+                            <Text>Cài đặt</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -66,9 +65,9 @@ const styles = StyleSheet.create({
         top: 0,
         left: 0,
         right: 0,
-        height: 200, // Chiều cao của phần background hiển thị
+        height: '30%', // Chiều cao của phần background hiển thị
         resizeMode: 'cover',
-        backgroundColor: 'green',
+        backgroundColor: '#CCFFFF',
         width: '100%'
     },
     overlay: {
@@ -85,7 +84,7 @@ const styles = StyleSheet.create({
         marginBottom: 16,
     },
     image: {
-        width: 340,
+        width: 330,
         height: 200,
         borderRadius: 8,
         marginBottom: 16,
@@ -96,6 +95,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 12,
         paddingVertical: 8,
         marginBottom: 16,
+        borderWidth: 0.5,
+        borderColor: 'green'
     },
     homeText: {
         fontSize: 18,
@@ -112,9 +113,10 @@ const styles = StyleSheet.create({
     icon: {
         width: 80,
         height: 80,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#CCFFFF',
         borderRadius: 20,
-        paddingLeft: 20
+        alignItems: 'center',
+        justifyContent: 'center'
     },
 });
 
