@@ -13,6 +13,7 @@ const TtSanPham = (props) => {
     const { id } = props.route.params
     const [object, setobject] = useState([])
     const [object2, setobject2] = useState([])
+    const [object3, setobject3] = useState([])
     const [isModal, setIsModal] = useState(false)
     const [avatar, setAvatar] = useState('')
     const [name, setName] = useState('')
@@ -97,6 +98,7 @@ const TtSanPham = (props) => {
         fetch(api_url + id)
             .then((res) => { return res.json(); })
             .then((data_json) => {
+                setobject3(data_json)
                 setAvatar(data_json.avatar)
                 setName(data_json.name)
                 setGiaNhap(data_json.giaNhap)
@@ -137,7 +139,7 @@ const TtSanPham = (props) => {
                 </TouchableOpacity>
             </View>
             <View style={styles.box2}>
-                <Image style={styles.img} source={{ uri: avatar }} />
+                <Image style={styles.img} source={{ uri: object3.avatar }} />
                 <Text style={styles.text}>Sản Phẩm: {name}</Text>
                 <Text style={styles.text}>Giá nhập: {giaNhap}</Text>
                 <Text style={styles.text}>Giá bán: {giaBan}</Text>
