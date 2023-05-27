@@ -2,9 +2,14 @@ import React from 'react';
 import { View, Image, TextInput, ImageBackground, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import background from '../assets/backgroud.png'
+import image from '../assets/image.jpg'
 
 const Home = (props) => {
     const { navigation } = props
+
+    const SanPham = () => {
+        navigation.navigate('SanPham')
+    }
 
     const Hang = () => {
         navigation.navigate('Hang')
@@ -18,7 +23,7 @@ const Home = (props) => {
         <ImageBackground source={background} style={styles.container}>
             <View style={styles.overlay}>
                 <View style={styles.topView}>
-                    <Image source={require('../assets/image.jpg')} style={styles.image} />
+                    <Image source={image} style={styles.image} />
                     <TextInput style={styles.searchBar} placeholder="Tìm kiếm..." />
                 </View>
                 <View style={styles.iconContainer}>
@@ -33,7 +38,7 @@ const Home = (props) => {
                             <Text style={styles.text}>Khách hàng</Text>
 
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.icon}>
+                        <TouchableOpacity onPress={SanPham} style={styles.icon}>
                             <Icon name="dropbox" size={45} color="green" />
                             <Text style={styles.text}>Sản phẩm</Text>
                         </TouchableOpacity>
