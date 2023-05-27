@@ -154,7 +154,7 @@ const TtSanPham = (props) => {
                 onRequestClose={() => { modal }}>
                 <View style={styles.khungngoai}>
                     <View style={styles.khungtrong}>
-                        <Text style={styles.title2}>Update Hãng</Text>
+                        <Text style={styles.title2}>Update Sản Phẩm</Text>
                         <Text style={styles.text3}>Avatar</Text>
                         <TextInput children={avatar} style={styles.textInputNgoai} onChangeText={(content) => { setAvatar(content) }} placeholder='Ảnh Sản Phẩm' />
                         <Text style={styles.text3}>Tên Sản Phẩm</Text>
