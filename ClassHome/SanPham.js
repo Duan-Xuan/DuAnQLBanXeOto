@@ -3,8 +3,7 @@ import React, { useState } from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import background from '../assets/backgroud.png'
 
-var api_url = 'http://192.168.0.108:3000/SanPham/';
-var api_url2 = 'http://192.168.0.108:3000/Hang/';
+var api_url = 'http://192.168.0.109:3000/SanPham/';
 
 const SanPham = (props) => {
     const { navigation } = props

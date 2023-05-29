@@ -2,43 +2,36 @@ import { Text, StyleSheet, Image, TextInput, Alert, View, TouchableOpacity, Imag
 import React, { useState } from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import background from '../assets/backgroud.png'
-import { Dropdown } from 'react-native-element-dropdown';
 
-var api_url = 'http://192.168.0.109:3000/SanPham/';
-var api_url2 = 'http://192.168.0.109:3000/Hang/';
+var api_url = 'http://192.168.0.109:3000/KhachHang/';
 
-const TtSanPham = (props) => {
+const TtKhachHang = (props) => {
 
     const { navigation } = props
     const { id } = props.route.params
-    const [object, setobject] = useState([])
-    const [object2, setobject2] = useState([])
-    const [object3, setobject3] = useState([])
     const [isModal, setIsModal] = useState(false)
-    const [avatar, setAvatar] = useState('')
     const [name, setName] = useState('')
-    const [giaNhap, setGiaNhap] = useState('')
-    const [giaBan, setGiaBan] = useState('')
-    const [idHang, setIdHang] = useState(null)
+    const [sdt, setSdt] = useState('')
+    const [diaChi, setDiaChi] = useState('')
 
     const modal = () => {
         setIsModal(!isModal)
     }
 
     const previous = () => {
-        navigation.navigate('SanPham')
+        navigation.navigate('KhachHang')
     }
 
     const update = () => {
-        if (avatar == '' || name == '' || giaNhap == '' || giaBan == '' || idHang == null) {
+        if (name == '' || sdt == '' || diaChi == '') {
             Alert.alert('Lỗi', 'Vui lòng nhập đủ thông tin!')
             return;
         }
-        if (isNaN(giaNhap) || isNaN(giaBan)) {
-            Alert.alert('Lỗi', 'Vui lòng nhập giá là số!')
+        if (isNaN(sdt)) {
+            Alert.alert('Lỗi', 'Vui lòng nhập sdt là số!')
             return;
         }
-        let obj = { avatar: avatar, name: name, giaNhap: giaNhap, giaBan: giaBan, idHang: idHang };
+        let obj = { name: name, sdt: sdt, diaChi: diaChi };
         fetch(api_url + id, {
             method: 'PUT',
             headers: {
@@ -78,7 +71,7 @@ const TtSanPham = (props) => {
                         .then((res) => {
                             if (res.status == 200) {
                                 Alert.alert("Thông báo", "Xóa thông tin thành công!")
-                                navigation.navigate('SanPham')
+                                navigation.navigate('KhachHang')
                             }
                         })
                         .catch((ex) => {
@@ -98,29 +91,9 @@ const TtSanPham = (props) => {
         fetch(api_url + id)
             .then((res) => { return res.json(); })
             .then((data_json) => {
-                setobject3(data_json)
-                setAvatar(data_json.avatar)
                 setName(data_json.name)
-                setGiaNhap(data_json.giaNhap)
-                setGiaBan(data_json.giaBan)
-                setIdHang(data_json.idHang)
-                fetch(api_url2 + data_json.idHang)
-                    .then((res) => { return res.json(); })
-                    .then((data_json) => {
-                        setobject(data_json)
-                    })
-                    .catch((err) => {
-                        console.log(err);
-                    });
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-
-        fetch(api_url2)
-            .then((res) => { return res.json(); })
-            .then((data_json) => {
-                setobject2(data_json)
+                setSdt(data_json.sdt)
+                setDiaChi(data_json.diaChi)
             })
             .catch((err) => {
                 console.log(err);
@@ -133,17 +106,16 @@ const TtSanPham = (props) => {
                 <TouchableOpacity style={styles.button1} onPress={previous}>
                     <Icon name="reply" size={45} color="white" />
                 </TouchableOpacity>
-                <Text style={styles.title}>Thông Tin Sản Phẩm</Text>
+                <Text style={styles.title}>Thông Tin Khách Hàng</Text>
                 <TouchableOpacity onPress={modal} style={styles.button1} >
                     <Icon name="paint-brush" size={45} color="white" />
                 </TouchableOpacity>
             </View>
             <View style={styles.box2}>
-                <Image style={styles.img} source={{ uri: object3.avatar }} />
-                <Text style={styles.text}>Sản Phẩm: {name}</Text>
-                <Text style={styles.text}>Giá nhập: {giaNhap}</Text>
-                <Text style={styles.text}>Giá bán: {giaBan}</Text>
-                <Text style={styles.text}>Hãng: {object.name}</Text>
+                <Image style={styles.img} source={{ uri: 'https://cdn4.iconfinder.com/data/icons/green-shopper/1068/user.png' }} />
+                <Text style={styles.text}>Tên: {name}</Text>
+                <Text style={styles.text}>Số điện thoại: {sdt}</Text>
+                <Text style={styles.text}>Địa chỉ: {diaChi}</Text>
                 <TouchableOpacity onPress={xoa} style={styles.button2} >
                     <Icon name="trash-o" size={45} color="red" />
                 </TouchableOpacity>
@@ -154,29 +126,13 @@ const TtSanPham = (props) => {
                 onRequestClose={() => { modal }}>
                 <View style={styles.khungngoai}>
                     <View style={styles.khungtrong}>
-                        <Text style={styles.title2}>Update Sản Phẩm</Text>
-                        <Text style={styles.text3}>Avatar</Text>
-                        <TextInput children={avatar} style={styles.textInputNgoai} onChangeText={(content) => { setAvatar(content) }} placeholder='Ảnh Sản Phẩm' />
-                        <Text style={styles.text3}>Tên Sản Phẩm</Text>
-                        <TextInput children={name} style={styles.textInputNgoai} onChangeText={(content) => { setName(content) }} placeholder='Tên Sản Phẩm' />
-                        <Text style={styles.text3}>Giá Nhập</Text>
-                        <TextInput children={giaNhap} style={styles.textInputNgoai} onChangeText={(content) => { setGiaNhap(content) }} placeholder='Giá Nhập Sản Phẩm' />
-                        <Text style={styles.text3}>Giá Bán</Text>
-                        <TextInput children={giaBan} style={styles.textInputNgoai} onChangeText={(content) => { setGiaBan(content) }} placeholder='Giá Bán Sản Phẩm' />
-                        <Text style={styles.text3}>Hãng</Text>
-                        <Dropdown
-                            style={styles.textInputNgoai}
-                            data={object2}
-                            search
-                            labelField="name"
-                            valueField="id"
-                            placeholder="Chọn hãng"
-                            searchPlaceholder="Search..."
-                            value={idHang}
-                            onChange={item => {
-                                setIdHang(item.id);
-                            }}
-                        />
+                        <Text style={styles.title2}>Update Khách Hàng</Text>
+                        <Text style={styles.text3}>Tên Khách Hàng</Text>
+                        <TextInput children={name} style={styles.textInputNgoai} onChangeText={(content) => { setName(content) }} placeholder='Tên Khách Hàng' />
+                        <Text style={styles.text3}>Số Điện Thoại</Text>
+                        <TextInput children={sdt} style={styles.textInputNgoai} onChangeText={(content) => { setSdt(content) }} placeholder='Số Điện Thoại Khách Hàng' />
+                        <Text style={styles.text3}>Địa Chỉ</Text>
+                        <TextInput children={diaChi} style={styles.textInputNgoai} onChangeText={(content) => { setDiaChi(content) }} placeholder='Địa Chỉ Khách Hàng' />
                         <View style={{ flexDirection: 'row', marginTop: '5%' }}>
                             <TouchableOpacity onPress={modal} style={styles.button3}>
                                 <Text style={{ fontWeight: 'bold', color: 'white' }}>
@@ -196,7 +152,7 @@ const TtSanPham = (props) => {
     )
 }
 
-export default TtSanPham
+export default TtKhachHang
 
 const styles = StyleSheet.create({
     container: {
@@ -239,19 +195,19 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     button1: {
-        marginTop: '10%',
-        marginLeft: '1%',
-        marginRight: '1%',
+        marginTop: '12%',
+        marginLeft: '-5%',
+        marginRight: '-5%',
     },
     button2: {
-        marginTop: '10%'
+        marginTop: '5%'
     },
     khungngoai: {
         flex: 1,
         justifyContent: 'center',
     },
     khungtrong: {
-        height: 600,
+        height: 420,
         borderRadius: 20,
         backgroundColor: 'white',
         marginLeft: 40,
@@ -281,7 +237,7 @@ const styles = StyleSheet.create({
     },
     img: {
         width: 200,
-        height: 110,
+        height: 180,
         borderRadius: 10,
         marginTop: '5%'
     }

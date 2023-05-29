@@ -4,6 +4,8 @@ import Login from './ClassLogin/Login'
 import Home from './ClassHome/Home'
 import DonHang from './ClassHome/DonHang'
 import KhachHang from './ClassHome/KhachHang'
+import AddKhachHang from './ClassFunction/AddKhachHang'
+import TtKhachHang from './ClassFunction/TtKhachHang'
 import SanPham from './ClassHome/SanPham'
 import AddSanPham from './ClassFunction/AddSanPham'
 import TtSanPham from './ClassFunction/TtSanPham'
@@ -25,6 +27,8 @@ export default function App() {
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="DonHang" component={DonHang} />
         <Stack.Screen name="KhachHang" component={KhachHang} />
+        <Stack.Screen name="AddKhachHang" component={AddKhachHang} />
+        <Stack.Screen name="TtKhachHang" component={TtKhachHang} />
         <Stack.Screen name="SanPham" component={SanPham} />
         <Stack.Screen name="AddSanPham" component={AddSanPham} />
         <Stack.Screen name="TtSanPham" component={TtSanPham} />

@@ -3,20 +3,25 @@ import React, { useState } from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import background from '../assets/backgroud.png'
 
-var api_url = 'http://192.168.0.109:3000/Hang/';
+var api_url = 'http://192.168.0.109:3000/KhachHang/';
 
-const AddHang = (props) => {
+const AddKhachHang = (props) => {
 
     const { navigation } = props
-
     const [name, setName] = useState('')
+    const [sdt, setSdt] = useState('')
+    const [diaChi, setDiaChi] = useState('')
 
     const add = () => {
-        if (name == '') {
+        if (name == '' || sdt == '' || diaChi == '') {
             Alert.alert('Lỗi', 'Vui lòng nhập đủ thông tin!')
             return;
         }
-        let obj = { name: name };
+        if (isNaN(sdt)) {
+            Alert.alert('Lỗi', 'Vui lòng nhập sdt là số!')
+            return;
+        }
+        let obj = { name: name, sdt: sdt, diaChi: diaChi };
         fetch(api_url, {
             method: 'POST',
             headers: {
@@ -27,8 +32,8 @@ const AddHang = (props) => {
         })
             .then((res) => {
                 if (res.status == 201) {
-                    Alert.alert('Thông báo', 'Thêm hãng thành công!')
-                    navigation.navigate('Hang')
+                    Alert.alert('Thông báo', 'Thêm khách hàng thành công!')
+                    navigation.navigate('KhachHang')
                 }
             })
             .catch((ex) => {
@@ -38,10 +43,12 @@ const AddHang = (props) => {
 
     const refresh = () => {
         setName('')
+        setSdt('')
+        setDiaChi('')
     }
 
     const previous = () => {
-        navigation.navigate('Hang')
+        navigation.navigate('KhachHang')
     }
 
     return (
@@ -50,14 +57,16 @@ const AddHang = (props) => {
                 <TouchableOpacity style={styles.button1} onPress={previous}>
                     <Icon name="reply" size={45} color="white" />
                 </TouchableOpacity>
-                <Text style={styles.title}>Thêm Hãng</Text>
+                <Text style={styles.title}>Thêm Khách Hàng</Text>
                 <TouchableOpacity onPress={add} style={styles.button1} >
                     <Icon name="check-circle" size={45} color="white" />
                 </TouchableOpacity>
             </View>
             <View style={styles.box2}>
-                <Text style={styles.text}>Tên Hãng</Text>
-                <TextInput style={styles.textInput} children={name} onChangeText={(content) => { setName(content) }} placeholder='Nhập Tên hãng' />
+                <Text style={styles.text}>Khách Hàng</Text>
+                <TextInput style={styles.textInput} children={name} onChangeText={(content) => { setName(content) }} placeholder='Tên Khách Hàng' />
+                <TextInput style={styles.textInput} children={sdt} onChangeText={(content) => { setSdt(content) }} placeholder='Số Điện Thoại Khách Hàng' />
+                <TextInput style={styles.textInput} children={diaChi} onChangeText={(content) => { setDiaChi(content) }} placeholder='Địa Chỉ Khách Hàng' />
                 <TouchableOpacity onPress={refresh} style={styles.button2} >
                     <Icon name="refresh" size={45} color="green" />
                 </TouchableOpacity>
@@ -66,7 +75,7 @@ const AddHang = (props) => {
     )
 }
 
-export default AddHang
+export default AddKhachHang
 
 const styles = StyleSheet.create({
     container: {
@@ -86,9 +95,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     box2: {
-        marginTop: '25%',
+        marginTop: '15%',
         width: 300,
-        height: 300,
+        height: 320,
         borderWidth: 1,
         borderRadius: 10,
         borderColor: 'green',
@@ -98,10 +107,10 @@ const styles = StyleSheet.create({
     text: {
         fontWeight: 'bold',
         fontSize: 20,
-        marginTop: '10%',
+        marginTop: '5%',
     },
     textInput: {
-        marginTop: '20%',
+        marginTop: '5%',
         height: 50,
         width: 250,
         backgroundColor: 'white',
@@ -111,11 +120,9 @@ const styles = StyleSheet.create({
         borderColor: 'green'
     },
     button1: {
-        marginTop: '10%',
-        marginLeft: '10%',
-        marginRight: '10%',
+        marginTop: '12%',
     },
     button2: {
-        marginTop: '15%'
+        marginTop: '5%'
     },
 })

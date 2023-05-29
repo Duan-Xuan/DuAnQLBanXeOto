@@ -7,6 +7,10 @@ import image from '../assets/image.jpg'
 const Home = (props) => {
     const { navigation } = props
 
+    const KhachHang = () => {
+        navigation.navigate('KhachHang')
+    }
+
     const SanPham = () => {
         navigation.navigate('SanPham')
     }
@@ -33,7 +37,7 @@ const Home = (props) => {
                             <Icon name="calendar" size={45} color="green" />
                             <Text style={styles.text}>Đơn hàng</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.icon}>
+                        <TouchableOpacity onPress={KhachHang} style={styles.icon}>
                             <Icon name="user-circle-o" size={45} color="green" />
                             <Text style={styles.text}>Khách hàng</Text>
 
