@@ -39,7 +39,7 @@ const Home = (props) => {
                             <Text style={styles.text}>Đơn hàng</Text>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={KhachHang} style={styles.icon}>
-                            <Icon name="user-circle-o" size={45} color="green" />
+                            <Icon name="users" size={45} color="green" />
                             <Text style={styles.text}>Khách hàng</Text>
 
                         </TouchableOpacity>
@@ -48,7 +48,7 @@ const Home = (props) => {
                             <Text style={styles.text}>Sản phẩm</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.icon} onPress={() => navigation.navigate(NhanVien)}>
-                            <Icon name="users" size={45} color="green" />
+                            <Icon name="user-circle-o" size={45} color="green" />
                             <Text style={styles.text}>Nhân viên</Text>
                         </TouchableOpacity>
                     </View>

@@ -53,7 +53,7 @@ const TtKhachHang = (props) => {
     }
 
     const xoa = () => {
-        Alert.alert('Thông báo', 'Bạn muốn xóa sản phẩm này!', [
+        Alert.alert('Thông báo', 'Bạn muốn xóa khách hàng này!', [
             {
                 text: 'Không',
                 onPress: () => { }
@@ -112,7 +112,7 @@ const TtKhachHang = (props) => {
                 </TouchableOpacity>
             </View>
             <View style={styles.box2}>
-                <Image style={styles.img} source={{ uri: 'https://cdn4.iconfinder.com/data/icons/green-shopper/1068/user.png' }} />
+                <Image style={styles.img} source={{ uri: 'https://chefjob.vn/wp-content/uploads/2020/07/ky-nang-cham-soc-khach-hang.jpg' }} />
                 <Text style={styles.text}>Tên: {name}</Text>
                 <Text style={styles.text}>Số điện thoại: {sdt}</Text>
                 <Text style={styles.text}>Địa chỉ: {diaChi}</Text>

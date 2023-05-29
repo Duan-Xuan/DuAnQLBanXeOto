@@ -9,8 +9,9 @@ var api_url = 'http://192.168.0.109:3000/NhanVien/';
 const NhanVien = (props) => {
     const { navigation } = props
     const [object, setobject] = useState([])
+
     const ttNhanVien = (x) => {
-        navigation.push('TtNhanVien', { id: x })
+        // navigation.push('TtNhanVien', { id: x })
     }
 
     const previous = () => {
@@ -34,7 +35,7 @@ const NhanVien = (props) => {
                 <TouchableOpacity style={styles.button} onPress={previous}>
                     <Icon name="reply" size={45} color="white" />
                 </TouchableOpacity>
-                <Text style={styles.title}>Nhan Vien</Text>
+                <Text style={styles.title}>Nhân Viên</Text>
                 <TouchableOpacity onPress={() => navigation.navigate('AddNhanVien')} style={styles.button} >
                     <Icon name="plus-circle" size={45} color="white" />
                 </TouchableOpacity>
@@ -43,11 +44,10 @@ const NhanVien = (props) => {
                 <FlatList data={object} renderItem={(data) => (
                     <TouchableOpacity onPress={ttNhanVien.bind(this, data.item.id)}>
                         <View style={styles.box31}>
-                            <Image style={styles.img} source={{ uri: 'https://cdn4.iconfinder.com/data/icons/green-shopper/1068/user.png' }} />
+                            <Image style={styles.img} source={{ uri: 'https://th.bing.com/th/id/OIP.ZvxE_Rk4voG0S4iXH6urvwHaFo?pid=ImgDet&rs=1' }} />
                             <View style={styles.box32}>
                                 <Text style={styles.text1}>Họ tên: {data.item.name}</Text>
                                 <Text style={styles.text1}>Địa chỉ: {data.item.diaChi}</Text>
-                                <Text style={styles.text1}>Mật Khẩu: {data.item.matKhau}</Text>
                                 <Text style={styles.text1}>Năm sinh: {data.item.namSinh}</Text>
                             </View>
                         </View>

@@ -51,17 +51,17 @@ const AddNhanVien = (props) => {
                 <TouchableOpacity style={styles.button1} onPress={() => { navigation.navigate('NhanVien') }}>
                     <Icon name="reply" size={45} color="white" />
                 </TouchableOpacity>
-                <Text style={styles.title}>Thêm Nhan Vien</Text>
+                <Text style={styles.title}>Thêm Nhân Viên</Text>
                 <TouchableOpacity onPress={add} style={styles.button1} >
                     <Icon name="check-circle" size={45} color="white" />
                 </TouchableOpacity>
             </View>
             <View style={styles.box2}>
-                <Text style={styles.text}>Nhan Vien</Text>
+                <Text style={styles.text}>Nhân Viên</Text>
                 <TextInput style={styles.textInput} children={name} onChangeText={(content) => { setName(content) }} placeholder='Tên Nhân Viên' />
                 <TextInput style={styles.textInput} children={diaChi} onChangeText={(content) => { setDiaChi(content) }} placeholder='Địa Chỉ Nhân Viên' />
-                <TextInput style={styles.textInput} children={matkhau} onChangeText={(content) => { setMatKhau(content) }} placeholder='Mật khẩu Nhân Viên' />
                 <TextInput style={styles.textInput} children={namSinh} onChangeText={(content) => { setNamSinh(content) }} placeholder='Năm sinh Nhân Viên' />
+                <TextInput style={styles.textInput} children={matkhau} onChangeText={(content) => { setMatKhau(content) }} placeholder='Mật khẩu Nhân Viên' />
                 <TouchableOpacity onPress={refresh} style={styles.button2} >
                     <Icon name="refresh" size={45} color="green" />
                 </TouchableOpacity>
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     box2: {
         marginTop: '15%',
         width: 300,
-        height: 320,
+        height: 380,
         borderWidth: 1,
         borderRadius: 10,
         borderColor: 'green',

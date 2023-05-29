@@ -47,7 +47,7 @@ const KhachHang = (props) => {
                 <FlatList data={object} renderItem={(data) => (
                     <TouchableOpacity onPress={ttKhachHang.bind(this, data.item.id)}>
                         <View style={styles.box31}>
-                            <Image style={styles.img} source={{ uri: 'https://cdn4.iconfinder.com/data/icons/green-shopper/1068/user.png' }} />
+                            <Image style={styles.img} source={{ uri: 'https://chefjob.vn/wp-content/uploads/2020/07/ky-nang-cham-soc-khach-hang.jpg' }} />
                             <View style={styles.box32}>
                                 <Text style={styles.text1}>Họ tên: {data.item.name}</Text>
                                 <Text style={styles.text1}>Sdt: {data.item.sdt}</Text>

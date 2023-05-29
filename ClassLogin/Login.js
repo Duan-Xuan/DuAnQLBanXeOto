@@ -22,11 +22,8 @@ const Login = ({ navigation }) => {
             .then((res) => res.json())
             .then((data_json) => {
                 for (let i = 0; i < data_json.length; i++) {
-                    if (username === data_json[i].name && password === data_json[i].matKhau) {
-                        // Save login information to AsyncStorage
-                        AsyncStorage.setItem('isLoggedIn', 'true');
+                    if (username == data_json[i].name && password == data_json[i].matKhau) {
                         AsyncStorage.setItem('username', username);
-
                         Alert.alert('Thông báo', 'Đăng nhập thành công');
                         navigation.navigate('Home');
                         return;
@@ -37,10 +34,6 @@ const Login = ({ navigation }) => {
             .catch((err) => {
                 console.log(err);
             });
-    };
-
-    const fix = () => {
-        Alert.alert('Thông báo', 'Tính năng đang phát triển ...');
     };
 
     return (
@@ -56,13 +49,13 @@ const Login = ({ navigation }) => {
                 <Text style={styles.ke} />
             </View>
             <View style={styles.box}>
-                <TouchableOpacity onPress={fix} style={styles.img}>
+                <TouchableOpacity style={styles.img}>
                     <Image source={facebook} />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={fix} style={styles.img}>
+                <TouchableOpacity style={styles.img}>
                     <Image source={google} />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={fix} style={styles.img}>
+                <TouchableOpacity style={styles.img}>
                     <Image source={twitter} />
                 </TouchableOpacity>
             </View>
