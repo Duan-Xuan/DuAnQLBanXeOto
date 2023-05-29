@@ -16,6 +16,7 @@ import TtHang from './ClassFunction/TtHang'
 import BanChay from './ClassHome/BanChay'
 import DoanhThu from './ClassHome/DoanhThu'
 import CaiDat from './ClassHome/CaiDat'
+import AddNhanVien from "./ClassFunction/AddNhanVien"
 
 const Stack = createStackNavigator();
 
@@ -33,6 +34,7 @@ export default function App() {
         <Stack.Screen name="AddSanPham" component={AddSanPham} />
         <Stack.Screen name="TtSanPham" component={TtSanPham} />
         <Stack.Screen name="NhanVien" component={NhanVien} />
+        <Stack.Screen name="AddNhanVien" component={AddNhanVien} />
         <Stack.Screen name="Hang" component={Hang} />
         <Stack.Screen name="AddHang" component={AddHang} />
         <Stack.Screen name="TtHang" component={TtHang} />

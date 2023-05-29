@@ -3,6 +3,7 @@ import { View, Image, TextInput, ImageBackground, Text, TouchableOpacity, StyleS
 import Icon from 'react-native-vector-icons/FontAwesome'
 import background from '../assets/backgroud.png'
 import image from '../assets/image.jpg'
+import NhanVien from './NhanVien';
 
 const Home = (props) => {
     const { navigation } = props
@@ -46,7 +47,7 @@ const Home = (props) => {
                             <Icon name="dropbox" size={45} color="green" />
                             <Text style={styles.text}>Sản phẩm</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.icon}>
+                        <TouchableOpacity style={styles.icon} onPress={() => navigation.navigate(NhanVien)}>
                             <Icon name="users" size={45} color="green" />
                             <Text style={styles.text}>Nhân viên</Text>
                         </TouchableOpacity>
