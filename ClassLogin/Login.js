@@ -6,14 +6,14 @@ import google from '../assets/google.png';
 import twitter from '../assets/twitter.png';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const api_url = 'http://192.168.0.109:3000/NhanVien/';
+const api_url = 'http://192.168.0.115:3000/NhanVien/';
 
 const Login = ({ navigation }) => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
+    const [matKhau, setMatKhau] = useState('');
 
     const login = () => {
-        if (username === '' || password === '') {
+        if (name === '' || matKhau === '') {
             Alert.alert('Thông báo', 'Vui lòng nhập đủ thông tin');
             return;
         }
@@ -22,8 +22,8 @@ const Login = ({ navigation }) => {
             .then((res) => res.json())
             .then((data_json) => {
                 for (let i = 0; i < data_json.length; i++) {
-                    if (username == data_json[i].name && password == data_json[i].matKhau) {
-                        AsyncStorage.setItem('username', username);
+                    if (name == data_json[i].name && matKhau == data_json[i].matKhau) {
+                        AsyncStorage.setItem('idNv', '' + data_json[i].id);
                         Alert.alert('Thông báo', 'Đăng nhập thành công');
                         navigation.navigate('Home');
                         return;
@@ -31,18 +31,15 @@ const Login = ({ navigation }) => {
                 }
                 Alert.alert('Thông báo', 'Tài khoản hoặc mật khẩu không chính xác');
             })
-            .catch((err) => {
-                console.log(err);
-            });
     };
 
     return (
         <ImageBackground source={background} style={styles.container}>
             <Text style={styles.title}>Login</Text>
             <Text style={styles.text1}>Username</Text>
-            <TextInput style={styles.textinput} onChangeText={(content) => setUsername(content)} placeholder="Nhập Username" />
+            <TextInput style={styles.textinput} onChangeText={(content) => setName(content)} placeholder="Nhập Username" />
             <Text style={styles.text1}>Password</Text>
-            <TextInput style={styles.textinput} onChangeText={(content) => setPassword(content)} placeholder="Nhập Password" />
+            <TextInput style={styles.textinput} onChangeText={(content) => setMatKhau(content)} secureTextEntry placeholder="Nhập Password" />
             <View style={styles.box}>
                 <Text style={styles.ke} />
                 <Text style={styles.text2}>OR</Text>

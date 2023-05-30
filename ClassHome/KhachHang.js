@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import background from '../assets/backgroud.png'
 
-var api_url = 'http://192.168.0.109:3000/KhachHang/';
+var api_url = 'http://192.168.0.115:3000/KhachHang/';
 
 const KhachHang = (props) => {
     const { navigation } = props
@@ -27,9 +27,6 @@ const KhachHang = (props) => {
             .then((data_json) => {
                 setobject(data_json)
             })
-            .catch((err) => {
-                console.log(err);
-            });
     }
 
     return (
@@ -47,7 +44,7 @@ const KhachHang = (props) => {
                 <FlatList data={object} renderItem={(data) => (
                     <TouchableOpacity onPress={ttKhachHang.bind(this, data.item.id)}>
                         <View style={styles.box31}>
-                            <Image style={styles.img} source={{ uri: 'https://chefjob.vn/wp-content/uploads/2020/07/ky-nang-cham-soc-khach-hang.jpg' }} />
+                            <Image style={styles.img} source={{ uri: 'https://th.bing.com/th/id/OIP.Eifu1O9MXkcAhbEHoHMouQHaHa?pid=ImgDet&w=815&h=816&rs=1' }} />
                             <View style={styles.box32}>
                                 <Text style={styles.text1}>Họ tên: {data.item.name}</Text>
                                 <Text style={styles.text1}>Sdt: {data.item.sdt}</Text>
@@ -102,6 +99,8 @@ const styles = StyleSheet.create({
         height: 100,
         margin: 10,
         borderRadius: 20,
+        borderColor: 'green',
+        borderWidth: 1,
     },
     button: {
         marginLeft: '5%',

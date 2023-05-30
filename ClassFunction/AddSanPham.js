@@ -4,8 +4,8 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import background from '../assets/backgroud.png'
 import { Dropdown } from 'react-native-element-dropdown';
 
-var api_url = 'http://192.168.0.109:3000/SanPham/';
-var api_url2 = 'http://192.168.0.109:3000/Hang/';
+var api_url = 'http://192.168.0.115:3000/SanPham/';
+var api_url2 = 'http://192.168.0.115:3000/Hang/';
 
 const AddSanPham = (props) => {
 
@@ -41,9 +41,6 @@ const AddSanPham = (props) => {
                     navigation.navigate('SanPham')
                 }
             })
-            .catch((ex) => {
-                console.log(ex);
-            });
     }
 
     const refresh = () => {
@@ -63,9 +60,6 @@ const AddSanPham = (props) => {
             .then((data_json) => {
                 setobject(data_json)
             })
-            .catch((err) => {
-                console.log(err);
-            });
     }
 
     return (

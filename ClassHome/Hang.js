@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import background from '../assets/backgroud.png'
 
-var api_url = 'http://192.168.0.109:3000/Hang/';
+var api_url = 'http://192.168.0.115:3000/Hang/';
 
 const Hang = (props) => {
     const { navigation } = props
@@ -27,9 +27,6 @@ const Hang = (props) => {
             .then((data_json) => {
                 setobject(data_json)
             })
-            .catch((err) => {
-                console.log(err);
-            });
     }
 
     return (

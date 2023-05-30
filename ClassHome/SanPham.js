@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import background from '../assets/backgroud.png'
 
-var api_url = 'http://192.168.0.109:3000/SanPham/';
+var api_url = 'http://192.168.0.115:3000/SanPham/';
 
 const SanPham = (props) => {
     const { navigation } = props
@@ -27,9 +27,6 @@ const SanPham = (props) => {
             .then((data_json) => {
                 setobject(data_json)
             })
-            .catch((err) => {
-                console.log(err);
-            });
     }
 
     return (
@@ -102,6 +99,8 @@ const styles = StyleSheet.create({
         height: 100,
         margin: 10,
         borderRadius: 20,
+        borderColor: 'green',
+        borderWidth: 1,
     },
     button: {
         marginLeft: '10%',

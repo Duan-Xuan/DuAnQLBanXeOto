@@ -1,12 +1,26 @@
-import React from 'react';
-import { View, Image, TextInput, ImageBackground, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Image, Alert, TextInput, ImageBackground, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import React, { useEffect, useState } from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import background from '../assets/backgroud.png'
 import image from '../assets/image.jpg'
-import NhanVien from './NhanVien';
+
+var api_url = 'http://192.168.0.115:3000/NhanVien/';
 
 const Home = (props) => {
     const { navigation } = props
+    const [object, setobject] = useState([])
+    const [idNv, setIdNv] = useState('')
+
+    useEffect(() => {
+        AsyncStorage.getItem('idNv').then(result => {
+            setIdNv(result)
+        })
+    }, [])
+
+    const DonHang = () => {
+        navigation.navigate('DonHang')
+    }
 
     const KhachHang = () => {
         navigation.navigate('KhachHang')
@@ -16,17 +30,42 @@ const Home = (props) => {
         navigation.navigate('SanPham')
     }
 
+    const NhanVien = () => {
+        if (idNv == 0)
+            navigation.navigate('NhanVien')
+        else
+            Alert.alert('Thông báo', 'Chỉ có admin mới xem được phần này!')
+
+    }
+
     const Hang = () => {
         navigation.navigate('Hang')
+    }
+
+    const BanChay = () => {
+        navigation.navigate('BanChay')
+    }
+
+    const DoanhThu = () => {
+        navigation.navigate('DoanhThu')
     }
 
     const CaiDat = () => {
         navigation.navigate('CaiDat')
     }
 
+    const getList = () => {
+        fetch(api_url + idNv)
+            .then((res) => { return res.json(); })
+            .then((data_json) => {
+                setobject(data_json)
+            })
+    }
+
     return (
-        <ImageBackground source={background} style={styles.container}>
+        <ImageBackground onLoad={getList} source={background} style={styles.container}>
             <View style={styles.overlay}>
+                <Text style={styles.title}>Xin Chào: {object.name}!</Text>
                 <View style={styles.topView}>
                     <Image source={image} style={styles.image} />
                     <TextInput style={styles.searchBar} placeholder="Tìm kiếm..." />
@@ -34,20 +73,19 @@ const Home = (props) => {
                 <View style={styles.iconContainer}>
                     <Text style={styles.homeText}>What do you need?</Text>
                     <View style={styles.iconRow}>
-                        <TouchableOpacity style={styles.icon}>
+                        <TouchableOpacity onPress={DonHang} style={styles.icon}>
                             <Icon name="calendar" size={45} color="green" />
                             <Text style={styles.text}>Đơn hàng</Text>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={KhachHang} style={styles.icon}>
                             <Icon name="users" size={45} color="green" />
                             <Text style={styles.text}>Khách hàng</Text>
-
                         </TouchableOpacity>
                         <TouchableOpacity onPress={SanPham} style={styles.icon}>
                             <Icon name="dropbox" size={45} color="green" />
                             <Text style={styles.text}>Sản phẩm</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.icon} onPress={() => navigation.navigate(NhanVien)}>
+                        <TouchableOpacity style={styles.icon} onPress={NhanVien}>
                             <Icon name="user-circle-o" size={45} color="green" />
                             <Text style={styles.text}>Nhân viên</Text>
                         </TouchableOpacity>
@@ -57,11 +95,11 @@ const Home = (props) => {
                             <Icon name="truck" size={45} color="green" />
                             <Text style={styles.text}>Hãng</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.icon}>
+                        <TouchableOpacity onPress={BanChay} style={styles.icon}>
                             <Icon name="bar-chart" size={45} color="green" />
                             <Text style={styles.text}>Bán chạy</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.icon}>
+                        <TouchableOpacity onPress={DoanhThu} style={styles.icon}>
                             <Icon name="money" size={45} color="green" />
                             <Text style={styles.text}>Doanh thu</Text>
                         </TouchableOpacity>
@@ -88,14 +126,20 @@ const styles = StyleSheet.create({
     overlay: {
         flex: 1,
         paddingHorizontal: 16,
-        paddingTop: 102,
+        paddingTop: 60,
+    },
+    title: {
+        padding: 20,
+        fontWeight: 'bold',
+        fontSize: 20,
+        color: 'white',
     },
     topView: {
         backgroundColor: 'white',
         borderRadius: 10,
-        paddingHorizontal: 16,
-        paddingVertical: 24,
-        marginBottom: 16,
+        paddingHorizontal: 15,
+        paddingVertical: 20,
+        marginBottom: 10,
     },
     image: {
         width: 330,
@@ -108,7 +152,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         paddingHorizontal: 12,
         paddingVertical: 8,
-        marginBottom: 16,
+        marginBottom: 10,
         borderWidth: 0.5,
         borderColor: 'green'
     },

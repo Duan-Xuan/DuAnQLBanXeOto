@@ -4,8 +4,8 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import background from '../assets/backgroud.png'
 import { Dropdown } from 'react-native-element-dropdown';
 
-var api_url = 'http://192.168.0.109:3000/SanPham/';
-var api_url2 = 'http://192.168.0.109:3000/Hang/';
+var api_url = 'http://192.168.0.115:3000/SanPham/';
+var api_url2 = 'http://192.168.0.115:3000/Hang/';
 
 const TtSanPham = (props) => {
 
@@ -13,13 +13,13 @@ const TtSanPham = (props) => {
     const { id } = props.route.params
     const [object, setobject] = useState([])
     const [object2, setobject2] = useState([])
-    const [object3, setobject3] = useState([])
     const [isModal, setIsModal] = useState(false)
     const [avatar, setAvatar] = useState('')
     const [name, setName] = useState('')
     const [giaNhap, setGiaNhap] = useState('')
     const [giaBan, setGiaBan] = useState('')
     const [idHang, setIdHang] = useState(null)
+    const [nameHang, setNameHang] = useState('')
 
     const modal = () => {
         setIsModal(!isModal)
@@ -54,9 +54,6 @@ const TtSanPham = (props) => {
                     modal()
                 }
             })
-            .catch((ex) => {
-                console.log(ex);
-            });
     }
 
     const xoa = () => {
@@ -81,9 +78,6 @@ const TtSanPham = (props) => {
                                 navigation.navigate('SanPham')
                             }
                         })
-                        .catch((ex) => {
-                            console.log(ex);
-                        });
                 }
             }
         ],
@@ -98,7 +92,7 @@ const TtSanPham = (props) => {
         fetch(api_url + id)
             .then((res) => { return res.json(); })
             .then((data_json) => {
-                setobject3(data_json)
+                setobject(data_json)
                 setAvatar(data_json.avatar)
                 setName(data_json.name)
                 setGiaNhap(data_json.giaNhap)
@@ -107,24 +101,14 @@ const TtSanPham = (props) => {
                 fetch(api_url2 + data_json.idHang)
                     .then((res) => { return res.json(); })
                     .then((data_json) => {
-                        setobject(data_json)
+                        setNameHang(data_json.name)
                     })
-                    .catch((err) => {
-                        console.log(err);
-                    });
             })
-            .catch((err) => {
-                console.log(err);
-            });
-
         fetch(api_url2)
             .then((res) => { return res.json(); })
             .then((data_json) => {
                 setobject2(data_json)
             })
-            .catch((err) => {
-                console.log(err);
-            });
     }
 
     return (
@@ -139,11 +123,11 @@ const TtSanPham = (props) => {
                 </TouchableOpacity>
             </View>
             <View style={styles.box2}>
-                <Image style={styles.img} source={{ uri: object3.avatar }} />
-                <Text style={styles.text}>Sản Phẩm: {name}</Text>
-                <Text style={styles.text}>Giá nhập: {giaNhap}</Text>
-                <Text style={styles.text}>Giá bán: {giaBan}</Text>
-                <Text style={styles.text}>Hãng: {object.name}</Text>
+                <Image style={styles.img} source={{ uri: object.avatar }} />
+                <Text style={styles.text}>Sản Phẩm: {object.name}</Text>
+                <Text style={styles.text}>Giá nhập: {object.giaNhap}</Text>
+                <Text style={styles.text}>Giá bán: {object.giaBan}</Text>
+                <Text style={styles.text}>Hãng: {nameHang}</Text>
                 <TouchableOpacity onPress={xoa} style={styles.button2} >
                     <Icon name="trash-o" size={45} color="red" />
                 </TouchableOpacity>
@@ -156,13 +140,13 @@ const TtSanPham = (props) => {
                     <View style={styles.khungtrong}>
                         <Text style={styles.title2}>Update Sản Phẩm</Text>
                         <Text style={styles.text3}>Avatar</Text>
-                        <TextInput children={avatar} style={styles.textInputNgoai} onChangeText={(content) => { setAvatar(content) }} placeholder='Ảnh Sản Phẩm' />
+                        <TextInput children={object.avatar} style={styles.textInputNgoai} onChangeText={(content) => { setAvatar(content) }} placeholder='Ảnh Sản Phẩm' />
                         <Text style={styles.text3}>Tên Sản Phẩm</Text>
-                        <TextInput children={name} style={styles.textInputNgoai} onChangeText={(content) => { setName(content) }} placeholder='Tên Sản Phẩm' />
+                        <TextInput children={object.name} style={styles.textInputNgoai} onChangeText={(content) => { setName(content) }} placeholder='Tên Sản Phẩm' />
                         <Text style={styles.text3}>Giá Nhập</Text>
-                        <TextInput children={giaNhap} style={styles.textInputNgoai} onChangeText={(content) => { setGiaNhap(content) }} placeholder='Giá Nhập Sản Phẩm' />
+                        <TextInput children={object.giaNhap} style={styles.textInputNgoai} onChangeText={(content) => { setGiaNhap(content) }} placeholder='Giá Nhập Sản Phẩm' />
                         <Text style={styles.text3}>Giá Bán</Text>
-                        <TextInput children={giaBan} style={styles.textInputNgoai} onChangeText={(content) => { setGiaBan(content) }} placeholder='Giá Bán Sản Phẩm' />
+                        <TextInput children={object.giaBan} style={styles.textInputNgoai} onChangeText={(content) => { setGiaBan(content) }} placeholder='Giá Bán Sản Phẩm' />
                         <Text style={styles.text3}>Hãng</Text>
                         <Dropdown
                             style={styles.textInputNgoai}
@@ -172,7 +156,7 @@ const TtSanPham = (props) => {
                             valueField="id"
                             placeholder="Chọn hãng"
                             searchPlaceholder="Search..."
-                            value={idHang}
+                            value={object.id}
                             onChange={item => {
                                 setIdHang(item.id);
                             }}
@@ -283,6 +267,8 @@ const styles = StyleSheet.create({
         width: 200,
         height: 110,
         borderRadius: 10,
-        marginTop: '5%'
+        marginTop: '5%',
+        borderColor: 'green',
+        borderWidth: 1,
     }
 })

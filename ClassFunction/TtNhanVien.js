@@ -3,36 +3,39 @@ import React, { useState } from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import background from '../assets/backgroud.png'
 
-var api_url = 'http://192.168.0.115:3000/KhachHang/';
+var api_url = 'http://192.168.0.115:3000/NhanVien/';
 
-const TtKhachHang = (props) => {
+const TtNhanVien = (props) => {
 
     const { navigation } = props
     const { id } = props.route.params
     const [object, setobject] = useState([])
     const [isModal, setIsModal] = useState(false)
+    const [isName, setIsName] = useState(true)
     const [name, setName] = useState('')
-    const [sdt, setSdt] = useState('')
+    const [namSinh, setNamSinh] = useState('')
     const [diaChi, setDiaChi] = useState('')
 
     const modal = () => {
+        if (name == 'Admin')
+            setIsName(false)
         setIsModal(!isModal)
     }
 
     const previous = () => {
-        navigation.navigate('KhachHang')
+        navigation.navigate('NhanVien')
     }
 
     const update = () => {
-        if (name == '' || sdt == '' || diaChi == '') {
+        if (name == '' || namSinh == '' || diaChi == '') {
             Alert.alert('Lỗi', 'Vui lòng nhập đủ thông tin!')
             return;
         }
-        if (isNaN(sdt)) {
-            Alert.alert('Lỗi', 'Vui lòng nhập sdt là số!')
+        if (isNaN(namSinh)) {
+            Alert.alert('Lỗi', 'Vui lòng nhập năm sinh là số!')
             return;
         }
-        let obj = { name: name, sdt: sdt, diaChi: diaChi };
+        let obj = { name: name, namSinh: namSinh, diaChi: diaChi, matKhau: object.matKhau };
         fetch(api_url + id, {
             method: 'PUT',
             headers: {
@@ -51,7 +54,12 @@ const TtKhachHang = (props) => {
     }
 
     const xoa = () => {
-        Alert.alert('Thông báo', 'Bạn muốn xóa khách hàng này!', [
+        if (name == 'Admin') {
+            Alert.alert('Thông báo', 'Không thể xóa admin')
+            return
+        }
+
+        Alert.alert('Thông báo', 'Bạn muốn xóa nhân viên này!', [
             {
                 text: 'Không',
                 onPress: () => { }
@@ -69,7 +77,7 @@ const TtKhachHang = (props) => {
                         .then((res) => {
                             if (res.status == 200) {
                                 Alert.alert("Thông báo", "Xóa thông tin thành công!")
-                                navigation.navigate('KhachHang')
+                                navigation.navigate('NhanVien')
                             }
                         })
                 }
@@ -88,7 +96,7 @@ const TtKhachHang = (props) => {
             .then((data_json) => {
                 setobject(data_json)
                 setName(data_json.name)
-                setSdt(data_json.sdt)
+                setNamSinh(data_json.namSinh)
                 setDiaChi(data_json.diaChi)
             })
     }
@@ -99,15 +107,15 @@ const TtKhachHang = (props) => {
                 <TouchableOpacity style={styles.button1} onPress={previous}>
                     <Icon name="reply" size={45} color="white" />
                 </TouchableOpacity>
-                <Text style={styles.title}>Thông Tin Khách Hàng</Text>
+                <Text style={styles.title}>Thông Tin Nhân Viên</Text>
                 <TouchableOpacity onPress={modal} style={styles.button1} >
                     <Icon name="paint-brush" size={45} color="white" />
                 </TouchableOpacity>
             </View>
             <View style={styles.box2}>
-                <Image style={styles.img} source={{ uri: 'https://th.bing.com/th/id/OIP.Eifu1O9MXkcAhbEHoHMouQHaHa?pid=ImgDet&w=815&h=816&rs=1' }} />
+                <Image style={styles.img} source={{ uri: object.name == 'Admin' ? 'https://quantridoanhnghiep.vn/wp-content/uploads/2019/11/icon-10.png' : 'https://th.bing.com/th/id/OIP.yP52-oeLVAFEGwS-E3IHRQAAAA?pid=ImgDet&w=450&h=450&rs=1' }} />
                 <Text style={styles.text}>Tên: {object.name}</Text>
-                <Text style={styles.text}>Số điện thoại: {object.sdt}</Text>
+                <Text style={styles.text}>Năm sinh: {object.namSinh}</Text>
                 <Text style={styles.text}>Địa chỉ: {object.diaChi}</Text>
                 <TouchableOpacity onPress={xoa} style={styles.button2} >
                     <Icon name="trash-o" size={45} color="red" />
@@ -119,13 +127,13 @@ const TtKhachHang = (props) => {
                 onRequestClose={() => { modal }}>
                 <View style={styles.khungngoai}>
                     <View style={styles.khungtrong}>
-                        <Text style={styles.title2}>Update Khách Hàng</Text>
-                        <Text style={styles.text3}>Tên Khách Hàng</Text>
-                        <TextInput children={object.name} style={styles.textInputNgoai} onChangeText={(content) => { setName(content) }} placeholder='Tên Khách Hàng' />
-                        <Text style={styles.text3}>Số Điện Thoại</Text>
-                        <TextInput children={object.sdt} style={styles.textInputNgoai} onChangeText={(content) => { setSdt(content) }} placeholder='Số Điện Thoại Khách Hàng' />
+                        <Text style={styles.title2}>Update Nhân Viên</Text>
+                        <Text style={styles.text3}>Tên Nhân Viên</Text>
+                        <TextInput children={object.name} style={styles.textInputNgoai} onChangeText={(content) => { setName(content) }} editable={isName} placeholder='Tên Nhân Viên' />
+                        <Text style={styles.text3}>Năm Sinh</Text>
+                        <TextInput children={object.namSinh} style={styles.textInputNgoai} onChangeText={(content) => { setNamSinh(content) }} placeholder='Năm Sinh Nhân Viên' />
                         <Text style={styles.text3}>Địa Chỉ</Text>
-                        <TextInput children={object.diaChi} style={styles.textInputNgoai} onChangeText={(content) => { setDiaChi(content) }} placeholder='Địa Chỉ Khách Hàng' />
+                        <TextInput children={object.diaChi} style={styles.textInputNgoai} onChangeText={(content) => { setDiaChi(content) }} placeholder='Địa Chỉ Nhân Viên' />
                         <View style={{ flexDirection: 'row', marginTop: '5%' }}>
                             <TouchableOpacity onPress={modal} style={styles.button3}>
                                 <Text style={{ fontWeight: 'bold', color: 'white' }}>
@@ -145,7 +153,7 @@ const TtKhachHang = (props) => {
     )
 }
 
-export default TtKhachHang
+export default TtNhanVien
 
 const styles = StyleSheet.create({
     container: {

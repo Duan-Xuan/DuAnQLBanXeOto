@@ -4,14 +4,14 @@ import { FlatList } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import background from '../assets/backgroud.png'
 
-var api_url = 'http://192.168.0.109:3000/NhanVien/';
+var api_url = 'http://192.168.0.115:3000/NhanVien/';
 
 const NhanVien = (props) => {
     const { navigation } = props
     const [object, setobject] = useState([])
 
     const ttNhanVien = (x) => {
-        // navigation.push('TtNhanVien', { id: x })
+        navigation.push('TtNhanVien', { id: x })
     }
 
     const previous = () => {
@@ -24,9 +24,6 @@ const NhanVien = (props) => {
             .then((data_json) => {
                 setobject(data_json)
             })
-            .catch((err) => {
-                console.log(err);
-            });
     }
 
     return (
@@ -44,11 +41,11 @@ const NhanVien = (props) => {
                 <FlatList data={object} renderItem={(data) => (
                     <TouchableOpacity onPress={ttNhanVien.bind(this, data.item.id)}>
                         <View style={styles.box31}>
-                            <Image style={styles.img} source={{ uri: 'https://th.bing.com/th/id/OIP.ZvxE_Rk4voG0S4iXH6urvwHaFo?pid=ImgDet&rs=1' }} />
+                            <Image style={styles.img} source={{ uri: data.item.name == 'Admin' ? 'https://quantridoanhnghiep.vn/wp-content/uploads/2019/11/icon-10.png' : 'https://th.bing.com/th/id/OIP.yP52-oeLVAFEGwS-E3IHRQAAAA?pid=ImgDet&w=450&h=450&rs=1' }} />
                             <View style={styles.box32}>
                                 <Text style={styles.text1}>Họ tên: {data.item.name}</Text>
-                                <Text style={styles.text1}>Địa chỉ: {data.item.diaChi}</Text>
                                 <Text style={styles.text1}>Năm sinh: {data.item.namSinh}</Text>
+                                <Text style={styles.text1}>Địa chỉ: {data.item.diaChi}</Text>
                             </View>
                         </View>
                     </TouchableOpacity>
@@ -99,6 +96,8 @@ const styles = StyleSheet.create({
         height: 100,
         margin: 10,
         borderRadius: 20,
+        borderColor: 'green',
+        borderWidth: 1,
     },
     button: {
         marginLeft: '5%',

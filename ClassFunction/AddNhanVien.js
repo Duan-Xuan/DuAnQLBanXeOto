@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import background from '../assets/backgroud.png'
 
-var api_url = 'http://192.168.0.109:3000/NhanVien/';
+var api_url = 'http://192.168.0.115:3000/NhanVien/';
 
 const AddNhanVien = (props) => {
 
@@ -33,9 +33,6 @@ const AddNhanVien = (props) => {
                     navigation.navigate('NhanVien')
                 }
             })
-            .catch((ex) => {
-                console.log(ex);
-            });
     }
 
     const refresh = () => {
@@ -61,7 +58,7 @@ const AddNhanVien = (props) => {
                 <TextInput style={styles.textInput} children={name} onChangeText={(content) => { setName(content) }} placeholder='Tên Nhân Viên' />
                 <TextInput style={styles.textInput} children={diaChi} onChangeText={(content) => { setDiaChi(content) }} placeholder='Địa Chỉ Nhân Viên' />
                 <TextInput style={styles.textInput} children={namSinh} onChangeText={(content) => { setNamSinh(content) }} placeholder='Năm sinh Nhân Viên' />
-                <TextInput style={styles.textInput} children={matkhau} onChangeText={(content) => { setMatKhau(content) }} placeholder='Mật khẩu Nhân Viên' />
+                <TextInput style={styles.textInput} children={matkhau} onChangeText={(content) => { setMatKhau(content) }} secureTextEntry placeholder='Mật khẩu Nhân Viên' />
                 <TouchableOpacity onPress={refresh} style={styles.button2} >
                     <Icon name="refresh" size={45} color="green" />
                 </TouchableOpacity>
