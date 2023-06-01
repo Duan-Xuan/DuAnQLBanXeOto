@@ -1,17 +1,16 @@
-import { Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Text, StyleSheet, View, TouchableOpacity, Image, ImageBackground, FlatList } from 'react-native'
 import React, { useState } from 'react'
-import { FlatList } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import background from '../assets/backgroud.png'
 
-var api_url = 'http://192.168.0.115:3000/NhanVien/';
+var api_url = 'http://192.168.0.115:3000/HoaDon/';
 
-const NhanVien = (props) => {
+const HoaDon = (props) => {
     const { navigation } = props
     const [object, setobject] = useState([])
 
-    const ttNhanVien = (x) => {
-        navigation.push('TtNhanVien', { id: x })
+    const ttHoaDon = (x) => {
+        navigation.push('TtHoaDon', { id: x })
     }
 
     const previous = () => {
@@ -32,30 +31,28 @@ const NhanVien = (props) => {
                 <TouchableOpacity style={styles.button} onPress={previous}>
                     <Icon name="reply" size={45} color="white" />
                 </TouchableOpacity>
-                <Text style={styles.title}>Nhân Viên</Text>
-                <TouchableOpacity onPress={() => navigation.navigate('AddNhanVien')} style={styles.button} >
-                    <Icon name="plus-circle" size={45} color="white" />
-                </TouchableOpacity>
+                <Text style={styles.title}>Hóa Đơn</Text>
+                <View style={styles.button}></View>
             </View>
             <View style={styles.box2}>
                 <FlatList data={object} renderItem={(data) => (
-                    <TouchableOpacity onPress={ttNhanVien.bind(this, data.item.id)}>
+                    <TouchableOpacity onPress={ttHoaDon.bind(this, data.item.id)}>
                         <View style={styles.box31}>
-                            <Image style={styles.img} source={{ uri: data.item.id == 0 ? 'https://quantridoanhnghiep.vn/wp-content/uploads/2019/11/icon-10.png' : 'https://th.bing.com/th/id/OIP.yP52-oeLVAFEGwS-E3IHRQAAAA?pid=ImgDet&w=450&h=450&rs=1' }} />
+                            <Image style={styles.img} source={{ uri: 'https://hddt.smartsign.com.vn/images/invoice.png' }} />
                             <View style={styles.box32}>
-                                <Text style={styles.text1}>Họ tên: {data.item.name}</Text>
-                                <Text style={styles.text1}>Năm sinh: {data.item.namSinh}</Text>
-                                <Text style={styles.text1}>Địa chỉ: {data.item.diaChi}</Text>
+                                <Text style={styles.text1}>Hóa đơn: {data.index + 1}</Text>
+                                <Text style={styles.text1}>Ngày tạo: {data.item.ngayTao}</Text>
                             </View>
                         </View>
                     </TouchableOpacity>
                 )} />
+
             </View>
         </ImageBackground>
     )
 }
 
-export default NhanVien
+export default HoaDon
 
 const styles = StyleSheet.create({
     container: {
@@ -100,8 +97,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
     },
     button: {
-        marginLeft: '5%',
-        marginRight: '5%',
+        marginLeft: '12%',
+        marginRight: '12%',
     },
     text1: {
         marginTop: '3%',

@@ -19,7 +19,7 @@ const Home = (props) => {
     }, [])
 
     const DonHang = () => {
-        navigation.navigate('DonHang')
+        navigation.navigate('BanHang', { screen: 'Đơn Hàng' })
     }
 
     const KhachHang = () => {

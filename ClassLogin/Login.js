@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Image, TouchableOpacity, Alert, Text, TextInput, ImageBackground } from 'react-native';
+import { StyleSheet, View, Image, TouchableOpacity, Alert, Text, TextInput, ImageBackground, DatePickerIOSBase } from 'react-native';
 import background from '../assets/backgroud.png';
 import facebook from '../assets/facebook.png';
 import google from '../assets/google.png';

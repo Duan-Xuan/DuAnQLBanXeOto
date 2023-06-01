@@ -113,7 +113,7 @@ const TtNhanVien = (props) => {
                 </TouchableOpacity>
             </View>
             <View style={styles.box2}>
-                <Image style={styles.img} source={{ uri: object.name == 'Admin' ? 'https://quantridoanhnghiep.vn/wp-content/uploads/2019/11/icon-10.png' : 'https://th.bing.com/th/id/OIP.yP52-oeLVAFEGwS-E3IHRQAAAA?pid=ImgDet&w=450&h=450&rs=1' }} />
+                <Image style={styles.img} source={{ uri: object.id == 0 ? 'https://quantridoanhnghiep.vn/wp-content/uploads/2019/11/icon-10.png' : 'https://th.bing.com/th/id/OIP.yP52-oeLVAFEGwS-E3IHRQAAAA?pid=ImgDet&w=450&h=450&rs=1' }} />
                 <Text style={styles.text}>Tên: {object.name}</Text>
                 <Text style={styles.text}>Năm sinh: {object.namSinh}</Text>
                 <Text style={styles.text}>Địa chỉ: {object.diaChi}</Text>

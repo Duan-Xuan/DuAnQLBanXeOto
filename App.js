@@ -1,8 +1,14 @@
 import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
+import { Image } from "react-native"
+import box from './assets/box.png'
+import category from './assets/category.png'
 import Login from './ClassLogin/Login'
 import Home from './ClassHome/Home'
 import DonHang from './ClassHome/DonHang'
+import HoaDon from './ClassHome/HoaDon'
+import TtHoaDon from './ClassFunction/TtHoaDon'
 import KhachHang from './ClassHome/KhachHang'
 import AddKhachHang from './ClassFunction/AddKhachHang'
 import TtKhachHang from './ClassFunction/TtKhachHang'
@@ -20,6 +26,7 @@ import DoanhThu from './ClassHome/DoanhThu'
 import CaiDat from './ClassHome/CaiDat'
 
 const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
@@ -27,7 +34,11 @@ export default function App() {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="DonHang" component={DonHang} />
+        <Stack.Screen
+          name="BanHang"
+          component={BanHang}
+        />
+        <Stack.Screen name="TtHoaDon" component={TtHoaDon} />
         <Stack.Screen name="KhachHang" component={KhachHang} />
         <Stack.Screen name="AddKhachHang" component={AddKhachHang} />
         <Stack.Screen name="TtKhachHang" component={TtKhachHang} />
@@ -46,4 +57,30 @@ export default function App() {
       </Stack.Navigator>
     </NavigationContainer>
   );
+}
+
+
+function BanHang() {
+  return (
+    <Tab.Navigator screenOptions={{
+      headerShown: false
+    }}>
+      <Tab.Screen name='Đơn Hàng' component={DonHang} options={{
+        tabBarIcon: (focused) => (
+          <Image
+            source={focused = category}
+            style={{ width: 25, height: 25 }}
+          />
+        )
+      }} />
+      <Tab.Screen name='Hóa Đơn' component={HoaDon} options={{
+        tabBarIcon: (focused) => (
+          <Image
+            source={focused = box}
+            style={{ width: 25, height: 25 }}
+          />
+        )
+      }} />
+    </Tab.Navigator>
+  )
 }

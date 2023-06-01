@@ -1,4 +1,4 @@
-import { Text, StyleSheet, TextInput, Alert, View, TouchableOpacity, ImageBackground, FlatList } from 'react-native'
+import { Text, StyleSheet, TextInput, Alert, View, TouchableOpacity, ImageBackground } from 'react-native'
 import React, { useState } from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import background from '../assets/backgroud.png'
