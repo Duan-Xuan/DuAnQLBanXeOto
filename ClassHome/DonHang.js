@@ -119,7 +119,6 @@ const DonHang = (props) => {
             setIdSanPham(x.id)
             setAvatar(x.avatar)
             setName(x.name)
-            alert(x.giaNhap)
             setGiaNhap(x.giaNhap)
             setGiaBan(x.giaBan)
             setN(0)
