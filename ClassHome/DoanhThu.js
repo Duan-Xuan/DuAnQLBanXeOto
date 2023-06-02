@@ -3,38 +3,30 @@ import React, { useState } from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import background from '../assets/backgroud.png'
 
-var api_url = 'http://192.168.0.115:3000/SanPham/';
-var api_url2 = 'http://192.168.0.115:3000/HoaDonCt/';
+var api_url = 'http://192.168.0.115:3000/HoaDonCt/';
 
 const DoanhThu = (props) => {
     const { navigation } = props
     const [object, setobject] = useState([])
+    const [tongTien, setTongTien] = useState(0)
+    const [von, setVon] = useState(0)
 
     const previous = () => {
         navigation.navigate('Home')
     }
 
     const getList = () => {
-        let a = 0
+        let a = 0, b = 0
         object.splice(0, object.length)
         fetch(api_url)
             .then((res) => { return res.json(); })
             .then((data_json) => {
-                fetch(api_url2)
-                    .then((res) => { return res.json(); })
-                    .then((data_json2) => {
-                        for (let i = 0; i < data_json.length; i++) {
-                            a = 0
-                            for (let j = 0; j < data_json2.length; j++) {
-                                for (let k = 0; k < data_json2[j].object.length; k++) {
-                                    if (data_json[i].id == data_json2[j].object[k].idSanPham) {
-                                        a += data_json2[j].object[k].soLuong
-                                    }
-                                }
-                            }
-                            object.push({ name: data_json[i].name, soLuong: a })
-                        }
-                    })
+                for (let i = 0; i < data_json.length; i++) {
+                    for (let j = 0; j < data_json[i].object.length; j++) {
+                        setTongTien(a += data_json[i].object[j].tongTien)
+                        setVon(b += (data_json[i].object[j].giaNhap * data_json[i].object[j].soLuong))
+                    }
+                }
             })
     }
 
@@ -50,7 +42,9 @@ const DoanhThu = (props) => {
                 </View>
             </View>
             <View style={styles.box2}>
-
+                <Text style={styles.text}>Tổng tiền: {tongTien}VND</Text>
+                <Text style={styles.text}>Vốn: {von}VND</Text>
+                <Text style={styles.text}>Lãi: {tongTien - von}VND</Text>
             </View>
         </ImageBackground>
     )
@@ -101,5 +95,20 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 25,
         color: 'red'
+    },
+    box2: {
+        marginTop: '15%',
+        width: 300,
+        height: 300,
+        borderWidth: 1,
+        borderRadius: 10,
+        borderColor: 'green',
+        backgroundColor: '#EEEEEE',
+        alignItems: 'center',
+    },
+    text: {
+        fontWeight: 'bold',
+        fontSize: 18,
+        marginTop: '15%',
     },
 })

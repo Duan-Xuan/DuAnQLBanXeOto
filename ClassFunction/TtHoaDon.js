@@ -70,7 +70,7 @@ const TtHoaDon = (props) => {
                         </View>
                     )} />
                 </View>
-                <Text style={styles.text}>Tổng tiền: {object.tongTien}</Text>
+                <Text style={styles.text}>Tổng tiền: {object.tongTien}VND</Text>
                 <Text style={styles.text}>Trạng thái: {object.trangThai}</Text>
                 <Text style={styles.text}>Ngày tạo: {object.ngayTao}</Text>
                 <Text style={styles.text}>Loại hóa đơn: {object.loaiHd}</Text>

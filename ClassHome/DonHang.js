@@ -20,6 +20,7 @@ const DonHang = (props) => {
     const [idSanPham, setIdSanPham] = useState('')
     const [avatar, setAvatar] = useState('')
     const [name, setName] = useState('')
+    const [giaNhap, setGiaNhap] = useState('')
     const [giaBan, setGiaBan] = useState('')
     const [soLuong, setSoLuong] = useState(0)
     const [s, setS] = useState(0)
@@ -104,7 +105,7 @@ const DonHang = (props) => {
                 return
             }
         }
-        object2.push({ idSanPham: idSanPham, nameSp: name, soLuong: n, tongTien: giaBan * n })
+        object2.push({ idSanPham: idSanPham, nameSp: name, soLuong: n, giaNhap: giaNhap, tongTien: giaBan * n })
         let a = 0, b = 0
         for (let i = 0; i < object2.length; i++) {
             setSoLuong(a += object2[i].soLuong)
@@ -118,6 +119,8 @@ const DonHang = (props) => {
             setIdSanPham(x.id)
             setAvatar(x.avatar)
             setName(x.name)
+            alert(x.giaNhap)
+            setGiaNhap(x.giaNhap)
             setGiaBan(x.giaBan)
             setN(0)
         }
