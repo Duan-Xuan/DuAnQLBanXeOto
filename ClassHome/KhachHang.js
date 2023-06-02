@@ -1,4 +1,4 @@
-import { Text, StyleSheet, View, TouchableOpacity, Image, ImageBackground, FlatList } from 'react-native'
+import { Text, StyleSheet, View, TouchableOpacity, TextInput, Image, ImageBackground, FlatList } from 'react-native'
 import React, { useState } from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import background from '../assets/backgroud.png'
@@ -8,6 +8,17 @@ var api_url = 'http://192.168.0.115:3000/KhachHang/';
 const KhachHang = (props) => {
     const { navigation } = props
     const [object, setobject] = useState([])
+    const [object2, setObject2] = useState([])
+    const [seach, setSeach] = useState('')
+
+    const getKhachHang = () => {
+        if (seach != '') {
+            const array = object.filter(element => element.name.includes(seach))
+            setObject2(array)
+        } else {
+            setObject2(object)
+        }
+    }
 
     const addKhachHang = () => {
         navigation.navigate('AddKhachHang')
@@ -26,6 +37,7 @@ const KhachHang = (props) => {
             .then((res) => { return res.json(); })
             .then((data_json) => {
                 setobject(data_json)
+                setObject2(data_json)
             })
     }
 
@@ -40,20 +52,24 @@ const KhachHang = (props) => {
                     <Icon name="plus-circle" size={45} color="white" />
                 </TouchableOpacity>
             </View>
-            <View style={styles.box2}>
-                <FlatList data={object} renderItem={(data) => (
-                    <TouchableOpacity onPress={ttKhachHang.bind(this, data.item.id)}>
-                        <View style={styles.box31}>
-                            <Image style={styles.img} source={{ uri: 'https://th.bing.com/th/id/OIP.Eifu1O9MXkcAhbEHoHMouQHaHa?pid=ImgDet&w=815&h=816&rs=1' }} />
-                            <View style={styles.box32}>
-                                <Text style={styles.text1}>Họ tên: {data.item.name}</Text>
-                                <Text style={styles.text1}>Sdt: {data.item.sdt}</Text>
-                                <Text style={styles.text1}>Địa chỉ: {data.item.diaChi}</Text>
-                            </View>
-                        </View>
-                    </TouchableOpacity>
-                )} />
+            <View style={styles.textInput}>
+                <TextInput style={{ flex: 1 }} onChangeText={(content) => { setSeach(content) }} placeholder='Seach...' />
+                <TouchableOpacity onPress={getKhachHang}>
+                    <Icon name="search" size={40} color="green" />
+                </TouchableOpacity>
             </View>
+            <FlatList data={object2} renderItem={(data) => (
+                <TouchableOpacity onPress={ttKhachHang.bind(this, data.item.id)}>
+                    <View style={styles.box31}>
+                        <Image style={styles.img} source={{ uri: 'https://th.bing.com/th/id/OIP.Eifu1O9MXkcAhbEHoHMouQHaHa?pid=ImgDet&w=815&h=816&rs=1' }} />
+                        <View style={styles.box32}>
+                            <Text style={styles.text1}>Họ tên: {data.item.name}</Text>
+                            <Text style={styles.text1}>Sdt: {data.item.sdt}</Text>
+                            <Text style={styles.text1}>Địa chỉ: {data.item.diaChi}</Text>
+                        </View>
+                    </View>
+                </TouchableOpacity>
+            )} />
         </ImageBackground>
     )
 }
@@ -76,9 +92,6 @@ const styles = StyleSheet.create({
     box1: {
         marginTop: '25%',
         flexDirection: 'row',
-    },
-    box2: {
-        marginTop: '18%',
     },
     box31: {
         width: 350,
@@ -112,4 +125,14 @@ const styles = StyleSheet.create({
         fontSize: 15,
         marginLeft: '10%'
     },
+    textInput: {
+        width: 300,
+        borderWidth: 1,
+        padding: 2,
+        margin: '3%',
+        flexDirection: 'row',
+        backgroundColor: 'white',
+        borderRadius: 20,
+        borderColor: 'green'
+    }
 })

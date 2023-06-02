@@ -30,6 +30,8 @@ const DonHang = (props) => {
     const [date, setDate] = useState('')
     const [idNv, setIdNv] = useState('')
     const [idKh, setIdKh] = useState('')
+    const [object6, setObject6] = useState([])
+    const [seach, setSeach] = useState('')
 
     useEffect(() => {
         var date = new Date().getDate()
@@ -41,6 +43,15 @@ const DonHang = (props) => {
         })
 
     }, [])
+
+    const getDonHang = () => {
+        if (seach != '') {
+            const array = object.filter(element => element.name.includes(seach))
+            setObject6(array)
+        } else {
+            setObject6(object)
+        }
+    }
 
     const gioHang = () => {
         if (object2.length <= 0) {
@@ -162,6 +173,7 @@ const DonHang = (props) => {
             .then((res) => { return res.json(); })
             .then((data_json) => {
                 setobject(data_json)
+                setObject6(data_json)
             })
         fetch(api_url2)
             .then((res) => { return res.json(); })
@@ -196,19 +208,23 @@ const DonHang = (props) => {
                     </View>
                 </View>
             </View>
-            <View style={styles.box2}>
-                <FlatList data={object} renderItem={(data) => (
-                    <TouchableOpacity onPress={modal.bind(this, data.item)}>
-                        <View style={styles.box31}>
-                            <Image style={styles.img} source={{ uri: data.item.avatar }} />
-                            <View style={styles.box32}>
-                                <Text style={styles.text1}>Sản Phẩm: {data.item.name}</Text>
-                                <Text style={styles.text1}>Giá bán: {data.item.giaBan}</Text>
-                            </View>
-                        </View>
-                    </TouchableOpacity>
-                )} />
+            <View style={styles.textInput}>
+                <TextInput style={{ flex: 1 }} onChangeText={(content) => { setSeach(content) }} placeholder='Seach...' />
+                <TouchableOpacity onPress={getDonHang}>
+                    <Icon name="search" size={40} color="green" />
+                </TouchableOpacity>
             </View>
+            <FlatList data={object6} renderItem={(data) => (
+                <TouchableOpacity onPress={modal.bind(this, data.item)}>
+                    <View style={styles.box31}>
+                        <Image style={styles.img} source={{ uri: data.item.avatar }} />
+                        <View style={styles.box32}>
+                            <Text style={styles.text1}>Sản Phẩm: {data.item.name}</Text>
+                            <Text style={styles.text1}>Giá bán: {data.item.giaBan}</Text>
+                        </View>
+                    </View>
+                </TouchableOpacity>
+            )} />
             <Modal animationType="slide"
                 transparent={true}
                 visible={isModal}
@@ -425,4 +441,14 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         borderColor: 'green'
     },
+    textInput: {
+        width: 300,
+        borderWidth: 1,
+        padding: 2,
+        margin: '3%',
+        flexDirection: 'row',
+        backgroundColor: 'white',
+        borderRadius: 20,
+        borderColor: 'green'
+    }
 })
