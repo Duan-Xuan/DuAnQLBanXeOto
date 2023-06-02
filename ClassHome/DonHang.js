@@ -76,6 +76,7 @@ const DonHang = (props) => {
                                 setSoLuong(0)
                                 setS(0)
                                 object2.splice(0, object2.length)
+                                modal2()
                                 navigation.navigate('BanHang', { screen: 'Hóa Đơn' })
                             }
                         })
