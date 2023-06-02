@@ -14,7 +14,6 @@ const HoaDon = (props) => {
     const getHoaDon = () => {
         if (seach != '') {
             const array = object.filter(element => element.ngayTao.includes(seach))
-            console.log(array)
             setObject2(array)
         } else {
             setObject2(object)
