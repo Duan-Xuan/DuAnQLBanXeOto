@@ -4,7 +4,7 @@ import { FlatList } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import background from '../assets/backgroud.png'
 
-var api_url = 'http://192.168.0.115:3000/NhanVien/';
+var api_url = 'http://192.168.0.109:3000/NhanVien/';
 
 const NhanVien = (props) => {
     const { navigation } = props

@@ -5,10 +5,10 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import background from '../assets/backgroud.png'
 
-var api_url = 'http://192.168.0.115:3000/SanPham/';
-var api_url2 = 'http://192.168.0.115:3000/HoaDon/';
-var api_url3 = 'http://192.168.0.115:3000/KhachHang/';
-var api_url4 = 'http://192.168.0.115:3000/HoaDonCt/';
+var api_url = 'http://192.168.0.109:3000/SanPham/';
+var api_url2 = 'http://192.168.0.109:3000/HoaDon/';
+var api_url3 = 'http://192.168.0.109:3000/KhachHang/';
+var api_url4 = 'http://192.168.0.109:3000/HoaDonCt/';
 
 const DonHang = (props) => {
     const { navigation } = props
