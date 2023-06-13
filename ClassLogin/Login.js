@@ -6,7 +6,7 @@ import google from '../assets/google.png';
 import twitter from '../assets/twitter.png';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const api_url = 'http://192.168.0.109:3000/NhanVien/';
+const api_url = 'http://192.168.0.107:3000/NhanVien/';
 
 const Login = ({ navigation }) => {
     const [name, setName] = useState('');
@@ -35,7 +35,8 @@ const Login = ({ navigation }) => {
 
     return (
         <ImageBackground source={background} style={styles.container}>
-            <Text style={styles.title}>Login</Text>
+            <Text style={styles.title}>Contact our staff</Text>
+            <Text style={styles.title2}>Login</Text>
             <Text style={styles.text1}>Username</Text>
             <TextInput style={styles.textinput} onChangeText={(content) => setName(content)} placeholder="Nhập Username" />
             <Text style={styles.text1}>Password</Text>
@@ -76,10 +77,16 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     title: {
-        marginTop: '55%',
+        marginTop: '25%',
         fontSize: 35,
         fontWeight: 'bold',
-        color: '#007700',
+        color: 'white',
+    },
+    title2: {
+        marginTop: '20%',
+        fontSize: 35,
+        fontWeight: 'bold',
+        color: 'green',
     },
     text1: {
         padding: 15,

@@ -4,11 +4,10 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import background from '../assets/backgroud.png'
 import { Dropdown } from 'react-native-element-dropdown';
 
-var api_url = 'http://192.168.0.109:3000/SanPham/';
-var api_url2 = 'http://192.168.0.109:3000/Hang/';
+var api_url = 'http://192.168.0.107:3000/SanPham/';
+var api_url2 = 'http://192.168.0.107:3000/Hang/';
 
 const TtSanPham = (props) => {
-
     const { navigation } = props
     const { id } = props.route.params
     const [object, setobject] = useState([])
@@ -18,6 +17,7 @@ const TtSanPham = (props) => {
     const [name, setName] = useState('')
     const [giaNhap, setGiaNhap] = useState('')
     const [giaBan, setGiaBan] = useState('')
+    const [moTa, setMoTa] = useState('')
     const [idHang, setIdHang] = useState(null)
     const [nameHang, setNameHang] = useState('')
 
@@ -38,7 +38,7 @@ const TtSanPham = (props) => {
             Alert.alert('Lỗi', 'Vui lòng nhập giá là số!')
             return;
         }
-        let obj = { avatar: avatar, name: name, giaNhap: giaNhap, giaBan: giaBan, idHang: idHang };
+        let obj = { avatar: avatar, name: name, giaNhap: giaNhap, giaBan: giaBan, moTa: moTa, idHang: idHang };
         fetch(api_url + id, {
             method: 'PUT',
             headers: {
@@ -97,6 +97,7 @@ const TtSanPham = (props) => {
                 setName(data_json.name)
                 setGiaNhap(data_json.giaNhap)
                 setGiaBan(data_json.giaBan)
+                setMoTa(data_json.moTa)
                 setIdHang(data_json.idHang)
                 fetch(api_url2 + data_json.idHang)
                     .then((res) => { return res.json(); })
@@ -123,7 +124,7 @@ const TtSanPham = (props) => {
                 </TouchableOpacity>
             </View>
             <View style={styles.box2}>
-                <Image style={styles.img} source={{ uri: object.avatar }} />
+                <Image style={styles.img} resizeMode='stretch' source={{ uri: object.avatar }} />
                 <Text style={styles.text}>Sản Phẩm: {object.name}</Text>
                 <Text style={styles.text}>Giá nhập: {object.giaNhap}</Text>
                 <Text style={styles.text}>Giá bán: {object.giaBan}</Text>
@@ -147,6 +148,8 @@ const TtSanPham = (props) => {
                         <TextInput children={object.giaNhap} style={styles.textInputNgoai} onChangeText={(content) => { setGiaNhap(content) }} placeholder='Giá Nhập Sản Phẩm' />
                         <Text style={styles.text3}>Giá Bán</Text>
                         <TextInput children={object.giaBan} style={styles.textInputNgoai} onChangeText={(content) => { setGiaBan(content) }} placeholder='Giá Bán Sản Phẩm' />
+                        <Text style={styles.text3}>Mô tả</Text>
+                        <TextInput children={object.moTa} style={styles.textInputNgoai} onChangeText={(content) => { setMoTa(content) }} placeholder='Mô tả Sản Phẩm' />
                         <Text style={styles.text3}>Hãng</Text>
                         <Dropdown
                             style={styles.textInputNgoai}
@@ -235,7 +238,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     khungtrong: {
-        height: 600,
+        height: 700,
         borderRadius: 20,
         backgroundColor: 'white',
         marginLeft: 40,

@@ -5,10 +5,9 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import background from '../assets/backgroud.png'
 import image from '../assets/image.jpg'
 
-var api_url = 'http://192.168.0.109:3000/NhanVien/';
+var api_url = 'http://192.168.0.107:3000/NhanVien/';
 
-const Home = (props) => {
-    const { navigation } = props
+const Home = ({ navigation }) => {
     const [object, setobject] = useState([])
     const [idNv, setIdNv] = useState('')
 

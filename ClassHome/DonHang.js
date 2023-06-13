@@ -5,13 +5,12 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import background from '../assets/backgroud.png'
 
-var api_url = 'http://192.168.0.109:3000/SanPham/';
-var api_url2 = 'http://192.168.0.109:3000/HoaDon/';
-var api_url3 = 'http://192.168.0.109:3000/KhachHang/';
-var api_url4 = 'http://192.168.0.109:3000/HoaDonCt/';
+var api_url = 'http://192.168.0.107:3000/SanPham/';
+var api_url2 = 'http://192.168.0.107:3000/HoaDon/';
+var api_url3 = 'http://192.168.0.107:3000/KhachHang/';
+var api_url4 = 'http://192.168.0.107:3000/HoaDonCt/';
 
-const DonHang = (props) => {
-    const { navigation } = props
+const DonHang = ({ navigation }) => {
     const [object, setobject] = useState([])
     const [object2, setobject2] = useState([])
     const [object3, setobject3] = useState([])
@@ -217,7 +216,7 @@ const DonHang = (props) => {
             <FlatList data={object6} renderItem={(data) => (
                 <TouchableOpacity onPress={modal.bind(this, data.item)}>
                     <View style={styles.box31}>
-                        <Image style={styles.img} source={{ uri: data.item.avatar }} />
+                        <Image style={styles.img} resizeMode='stretch' source={{ uri: data.item.avatar }} />
                         <View style={styles.box32}>
                             <Text style={styles.text1}>Sản Phẩm: {data.item.name}</Text>
                             <Text style={styles.text1}>Giá bán: {data.item.giaBan}</Text>
@@ -232,7 +231,7 @@ const DonHang = (props) => {
                 <View style={styles.khungngoai}>
                     <View style={styles.khungtrong}>
                         <Text style={styles.title2}>Thêm Đơn Hàng</Text>
-                        <Image style={styles.img2} source={{ uri: avatar }} />
+                        <Image style={styles.img2} resizeMode='stretch' source={{ uri: avatar }} />
                         <Text style={styles.text3}>Sản Phẩm: {name} </Text>
                         <TextInput children={n} style={styles.textInputNgoai} editable={false} />
                         <View style={{ flexDirection: 'row' }}>
@@ -352,7 +351,6 @@ const styles = StyleSheet.create({
     },
     img: {
         flex: 1,
-        width: 100,
         height: 100,
         margin: 10,
         borderRadius: 20,

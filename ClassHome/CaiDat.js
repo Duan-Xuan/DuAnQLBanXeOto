@@ -4,10 +4,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import background from '../assets/backgroud.png'
 
-var api_url = 'http://192.168.0.109:3000/NhanVien/';
+var api_url = 'http://192.168.0.107:3000/NhanVien/';
 
-const CaiDat = (props) => {
-    const { navigation } = props
+const CaiDat = ({ navigation }) => {
     const [object, setobject] = useState([])
     const [isModal, setIsModal] = useState(false)
     const [passWordOld, setPassWordOld] = useState('')
@@ -80,7 +79,7 @@ const CaiDat = (props) => {
                     <TouchableOpacity onPress={previous}>
                         <Icon name="reply" size={45} color="white" />
                     </TouchableOpacity>
-                    <Image style={styles.img} source={{ uri: idNv == 0 ? 'https://quantridoanhnghiep.vn/wp-content/uploads/2019/11/icon-10.png' : 'https://th.bing.com/th/id/OIP.yP52-oeLVAFEGwS-E3IHRQAAAA?pid=ImgDet&w=450&h=450&rs=1' }} />
+                    <Image style={styles.img} resizeMode='stretch' source={{ uri: idNv == 0 ? 'https://quantridoanhnghiep.vn/wp-content/uploads/2019/11/icon-10.png' : 'https://th.bing.com/th/id/OIP.yP52-oeLVAFEGwS-E3IHRQAAAA?pid=ImgDet&w=450&h=450&rs=1' }} />
                     <Text style={styles.text}>Xin Chào: {object.name}!</Text>
                     <TouchableOpacity onPress={modal} style={styles.button}>
                         <Text style={styles.text2}>Đổi Password</Text>
@@ -141,9 +140,9 @@ const styles = StyleSheet.create({
     },
     img: {
         marginTop: '5%',
-        width: 150,
-        height: 150,
-        marginLeft: '20%',
+        width: 180,
+        height: 160,
+        marginLeft: '15%',
         borderRadius: 50,
         borderColor: 'green',
         borderWidth: 1,

@@ -3,10 +3,9 @@ import React, { useState } from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import background from '../assets/backgroud.png'
 
-var api_url = 'http://192.168.0.109:3000/NhanVien/';
+var api_url = 'http://192.168.0.107:3000/NhanVien/';
 
 const TtNhanVien = (props) => {
-
     const { navigation } = props
     const { id } = props.route.params
     const [object, setobject] = useState([])
@@ -113,7 +112,7 @@ const TtNhanVien = (props) => {
                 </TouchableOpacity>
             </View>
             <View style={styles.box2}>
-                <Image style={styles.img} source={{ uri: object.id == 0 ? 'https://quantridoanhnghiep.vn/wp-content/uploads/2019/11/icon-10.png' : 'https://th.bing.com/th/id/OIP.yP52-oeLVAFEGwS-E3IHRQAAAA?pid=ImgDet&w=450&h=450&rs=1' }} />
+                <Image style={styles.img} resizeMode='stretch' source={{ uri: object.id == 0 ? 'https://quantridoanhnghiep.vn/wp-content/uploads/2019/11/icon-10.png' : 'https://th.bing.com/th/id/OIP.yP52-oeLVAFEGwS-E3IHRQAAAA?pid=ImgDet&w=450&h=450&rs=1' }} />
                 <Text style={styles.text}>Tên: {object.name}</Text>
                 <Text style={styles.text}>Năm sinh: {object.namSinh}</Text>
                 <Text style={styles.text}>Địa chỉ: {object.diaChi}</Text>

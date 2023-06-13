@@ -3,11 +3,9 @@ import React, { useState } from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import background from '../assets/backgroud.png'
 
-var api_url = 'http://192.168.0.109:3000/NhanVien/';
+var api_url = 'http://192.168.0.107:3000/NhanVien/';
 
-const AddNhanVien = (props) => {
-
-    const { navigation } = props
+const AddNhanVien = ({ navigation }) => {
     const [name, setName] = useState('')
     const [diaChi, setDiaChi] = useState('')
     const [matkhau, setMatKhau] = useState('')

@@ -3,10 +3,9 @@ import React, { useState } from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import background from '../assets/backgroud.png'
 
-var api_url = 'http://192.168.0.109:3000/SanPham/';
+var api_url = 'http://192.168.0.107:3000/SanPham/';
 
-const SanPham = (props) => {
-    const { navigation } = props
+const SanPham = ({ navigation }) => {
     const [object, setobject] = useState([])
     const [object2, setObject2] = useState([])
     const [seach, setSeach] = useState('')
@@ -61,7 +60,7 @@ const SanPham = (props) => {
             <FlatList data={object2} renderItem={(data) => (
                 <TouchableOpacity onPress={ttSanPham.bind(this, data.item.id)}>
                     <View style={styles.box31}>
-                        <Image style={styles.img} source={{ uri: data.item.avatar }} />
+                        <Image style={styles.img} resizeMode='stretch' source={{ uri: data.item.avatar }} />
                         <View style={styles.box32}>
                             <Text style={styles.text1}>Sản Phẩm: {data.item.name}</Text>
                             <Text style={styles.text1}>Giá nhập: {data.item.giaNhap}</Text>
@@ -108,7 +107,6 @@ const styles = StyleSheet.create({
     },
     img: {
         flex: 1,
-        width: 100,
         height: 100,
         margin: 10,
         borderRadius: 20,

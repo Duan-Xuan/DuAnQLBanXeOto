@@ -3,10 +3,9 @@ import React, { useState } from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import background from '../assets/backgroud.png'
 
-var api_url = 'http://192.168.0.109:3000/HoaDon/';
+var api_url = 'http://192.168.0.107:3000/HoaDon/';
 
-const HoaDon = (props) => {
-    const { navigation } = props
+const HoaDon = ({ navigation }) => {
     const [object, setobject] = useState([])
     const [object2, setObject2] = useState([])
     const [seach, setSeach] = useState(0)
@@ -55,7 +54,7 @@ const HoaDon = (props) => {
             <FlatList data={object2} renderItem={(data) => (
                 <TouchableOpacity onPress={ttHoaDon.bind(this, data.item.id)}>
                     <View style={styles.box31}>
-                        <Image style={styles.img} source={{ uri: 'https://hddt.smartsign.com.vn/images/invoice.png' }} />
+                        <Image style={styles.img} resizeMode='stretch' source={{ uri: 'https://hddt.smartsign.com.vn/images/invoice.png' }} />
                         <View style={styles.box32}>
                             <Text style={styles.text1}>Hóa đơn: {data.index + 1}</Text>
                             <Text style={styles.text1}>Ngày tạo: {data.item.ngayTao}</Text>

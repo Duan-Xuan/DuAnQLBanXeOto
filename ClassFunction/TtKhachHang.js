@@ -3,10 +3,9 @@ import React, { useState } from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import background from '../assets/backgroud.png'
 
-var api_url = 'http://192.168.0.109:3000/KhachHang/';
+var api_url = 'http://192.168.0.107:3000/KhachHang/';
 
 const TtKhachHang = (props) => {
-
     const { navigation } = props
     const { id } = props.route.params
     const [object, setobject] = useState([])
@@ -105,7 +104,7 @@ const TtKhachHang = (props) => {
                 </TouchableOpacity>
             </View>
             <View style={styles.box2}>
-                <Image style={styles.img} source={{ uri: 'https://th.bing.com/th/id/OIP.Eifu1O9MXkcAhbEHoHMouQHaHa?pid=ImgDet&w=815&h=816&rs=1' }} />
+                <Image style={styles.img} resizeMode='stretch' source={{ uri: 'https://th.bing.com/th/id/OIP.Eifu1O9MXkcAhbEHoHMouQHaHa?pid=ImgDet&w=815&h=816&rs=1' }} />
                 <Text style={styles.text}>Tên: {object.name}</Text>
                 <Text style={styles.text}>Số điện thoại: {object.sdt}</Text>
                 <Text style={styles.text}>Địa chỉ: {object.diaChi}</Text>

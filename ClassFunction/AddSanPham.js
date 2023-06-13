@@ -4,17 +4,16 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import background from '../assets/backgroud.png'
 import { Dropdown } from 'react-native-element-dropdown';
 
-var api_url = 'http://192.168.0.109:3000/SanPham/';
-var api_url2 = 'http://192.168.0.109:3000/Hang/';
+var api_url = 'http://192.168.0.107:3000/SanPham/';
+var api_url2 = 'http://192.168.0.107:3000/Hang/';
 
-const AddSanPham = (props) => {
-
-    const { navigation } = props
+const AddSanPham = ({ navigation }) => {
     const [object, setobject] = useState([])
     const [avatar, setAvatar] = useState('')
     const [name, setName] = useState('')
     const [giaNhap, setGiaNhap] = useState('')
     const [giaBan, setGiaBan] = useState('')
+    const [moTa, setMoTa] = useState('')
     const [idHang, setIdHang] = useState('')
 
     const add = () => {
@@ -26,7 +25,7 @@ const AddSanPham = (props) => {
             Alert.alert('Lỗi', 'Vui lòng nhập giá là số!')
             return;
         }
-        let obj = { avatar: avatar, name: name, giaNhap: giaNhap, giaBan: giaBan, idHang: idHang };
+        let obj = { avatar: avatar, name: name, giaNhap: giaNhap, giaBan: giaBan, moTa: moTa, idHang: idHang };
         fetch(api_url, {
             method: 'POST',
             headers: {
@@ -79,6 +78,7 @@ const AddSanPham = (props) => {
                 <TextInput style={styles.textInput} children={name} onChangeText={(content) => { setName(content) }} placeholder='Tên Sản Phẩm' />
                 <TextInput style={styles.textInput} children={giaNhap} onChangeText={(content) => { setGiaNhap(content) }} placeholder='Giá Nhập Sản Phẩm' />
                 <TextInput style={styles.textInput} children={giaBan} onChangeText={(content) => { setGiaBan(content) }} placeholder='Giá Bán Sản Phẩm' />
+                <TextInput style={styles.textInput} children={giaBan} onChangeText={(content) => { setMoTa(content) }} placeholder='Mô tả Sản Phẩm' />
                 <Dropdown
                     style={styles.textInput}
                     data={object}
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     box2: {
         marginTop: '15%',
         width: 300,
-        height: 450,
+        height: 500,
         borderWidth: 1,
         borderRadius: 10,
         borderColor: 'green',

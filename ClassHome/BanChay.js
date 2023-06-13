@@ -3,11 +3,10 @@ import React, { useState } from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import background from '../assets/backgroud.png'
 
-var api_url = 'http://192.168.0.109:3000/SanPham/';
-var api_url2 = 'http://192.168.0.109:3000/HoaDonCt/';
+var api_url = 'http://192.168.0.107:3000/SanPham/';
+var api_url2 = 'http://192.168.0.107:3000/HoaDonCt/';
 
-const BanChay = (props) => {
-    const { navigation } = props
+const BanChay = ({ navigation }) => {
     const [object, setobject] = useState([])
 
     const previous = () => {
@@ -36,6 +35,7 @@ const BanChay = (props) => {
                         }
                     })
             })
+
     }
 
     return (

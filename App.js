@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { Image } from "react-native"
 import box from './assets/box.png'
 import category from './assets/category.png'
+import XemSp from './ClassLogin/XemSp'
 import Login from './ClassLogin/Login'
 import Home from './ClassHome/Home'
 import DonHang from './ClassHome/DonHang'
@@ -32,6 +33,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="XemSp" component={XemSp} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen
