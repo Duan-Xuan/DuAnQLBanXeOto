@@ -141,7 +141,7 @@ const DonHang = ({ navigation }) => {
     }
 
     const clearList = () => {
-        Alert.alert('Thông báo', 'Bạn muốn danh sách này!', [
+        Alert.alert('Thông báo', 'Bạn muốn xóa danh sách này!', [
             {
                 text: 'Không',
                 onPress: () => { }
