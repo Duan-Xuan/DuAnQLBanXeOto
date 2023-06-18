@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import background from '../assets/backgroud.png'
 
-var api_url = 'http://192.168.0.107:3000/SanPham/';
+var api_url = 'http://192.168.0.106:3000/SanPham/';
 
 const SanPham = ({ navigation }) => {
     const [object, setobject] = useState([])

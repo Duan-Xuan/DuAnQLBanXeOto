@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Alert, ScrollView, View, Dimensions, Image, TouchableOpacity, Text, ImageBackground } from 'react-native';
 import background from '../assets/backgroud.png';
-const api_url = 'http://192.168.0.107:3000/SanPham/';
+const api_url = 'http://192.168.0.106:3000/SanPham/';
 const Width = Dimensions.get('window').width;
 const Height = Dimensions.get('window').height;
 

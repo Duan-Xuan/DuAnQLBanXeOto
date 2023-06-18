@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import background from '../assets/backgroud.png'
 
-var api_url = 'http://192.168.0.107:3000/NhanVien/';
+var api_url = 'http://192.168.0.106:3000/NhanVien/';
 
 const CaiDat = ({ navigation }) => {
     const [object, setobject] = useState([])

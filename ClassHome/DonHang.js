@@ -5,10 +5,10 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import background from '../assets/backgroud.png'
 
-var api_url = 'http://192.168.0.107:3000/SanPham/';
-var api_url2 = 'http://192.168.0.107:3000/HoaDon/';
-var api_url3 = 'http://192.168.0.107:3000/KhachHang/';
-var api_url4 = 'http://192.168.0.107:3000/HoaDonCt/';
+var api_url = 'http://192.168.0.106:3000/SanPham/';
+var api_url2 = 'http://192.168.0.106:3000/HoaDon/';
+var api_url3 = 'http://192.168.0.106:3000/KhachHang/';
+var api_url4 = 'http://192.168.0.106:3000/HoaDonCt/';
 
 const DonHang = ({ navigation }) => {
     const [object, setobject] = useState([])
@@ -389,11 +389,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     khungtrong: {
-        height: 420,
+        height: 450,
         borderRadius: 20,
         backgroundColor: 'white',
-        marginLeft: 40,
-        marginRight: 40,
+        marginLeft: 30,
+        marginRight: 30,
         alignItems: 'center',
         borderWidth: 1,
         borderColor: 'green',
@@ -419,13 +419,13 @@ const styles = StyleSheet.create({
     },
     text3: {
         fontWeight: 'bold',
-        marginLeft: '5%',
-        marginRight: '5%',
+        marginLeft: '3%',
+        marginRight: '3%',
     },
     text4: {
         fontWeight: 'bold',
-        marginLeft: '15%',
-        marginRight: '15%',
+        marginLeft: '13%',
+        marginRight: '13%',
     },
     title2: {
         fontSize: 30,

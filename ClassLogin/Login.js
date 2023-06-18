@@ -6,7 +6,7 @@ import google from '../assets/google.png';
 import twitter from '../assets/twitter.png';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const api_url = 'http://192.168.0.107:3000/NhanVien/';
+const api_url = 'http://192.168.0.106:3000/NhanVien/';
 
 const Login = ({ navigation }) => {
     const [name, setName] = useState('');
