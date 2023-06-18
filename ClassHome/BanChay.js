@@ -44,7 +44,7 @@ const BanChay = ({ navigation }) => {
                 <TouchableOpacity style={styles.button} onPress={previous}>
                     <Icon name="reply" size={45} color="white" />
                 </TouchableOpacity>
-                <Text style={styles.title}>Top bán</Text>
+                <Text style={styles.title}>Số lượng bán</Text>
                 <View style={styles.button} >
                     <Icon name="ravelry" size={45} color="white" />
                 </View>
@@ -94,8 +94,8 @@ const styles = StyleSheet.create({
     },
     button: {
         marginTop: '10%',
-        marginLeft: '10%',
-        marginRight: '10%',
+        marginLeft: '3%',
+        marginRight: '3%',
     },
     text1: {
         marginTop: '2%',
